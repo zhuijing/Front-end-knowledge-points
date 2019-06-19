@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS 对网页性能优化</title>
+  <style>
+    li {
+
+    }
+  </style>
+</head>
+<body>
+  <ol>
+      <li>
+          <h3> 压缩css</h3>
+        </li>
+    <li>
+      <h3> 使用简写</h3>
+      <code>
+          <pre>
+            p {
+              margin-top: 1px;
+              margin-right: 2px;
+              margin-bottom: 3px;
+              margin-left: 4px;
+            }
+            
+            p {
+              margin: 1px 2px 3px 4px;
+            }
+          </pre>
+      </code>
+    </li>
+    <li>
+      <h3>查找并删除未使用的 CSS</h3>
+      <code>
+        <pre>
+            开发人员工具，并在最近的版本中打开 Sources 选项卡，然后打开命令菜单。然后，选择 Show Coverage，在 Coverage analysis 窗口中高亮显示当前页面上未使用的代码，让您大开眼界。
+            打开谷歌浏览器开发都工具，在 Conlse 旁边更多选择 Coverage，就可以看到未使用的 CSS, 点击对应的项，高亮显示当前页面上未使用的代码
+        </pre>
+      </code>
+    </li>
+    <li>
+      <h3>内联关键 CSS</h3>
+      <code>
+        <pre>
+          加载外部样式表需要花费时间，这是由于延迟造成的——因此，可以把最关键的代码位放在 head 中。但是，请确保不要做得过火，记住，执行维护任务的人员也必须读取代码。
+        </pre>
+      </code>
+    </li>
+    <li>
+      <h3>使用颜色快捷方式</h3>
+      <code>
+        <pre>
+            target {
+              background-color: #ffffff;
+          }
+          target {
+              background: #fff;
+          }
+        </pre>
+      </code>
+    </li>
+    <li>
+        <h3>删除不必要的零和单位</h3>
+        <code>
+          <pre>
+              <-- padding: 0.2em;
+              margin: 20em;
+              avalue: 0px;
+              padding: 0.2em;
+              margin: 20em;
+              avalue: 0; -->
+
+              padding: .2em;
+              margin: 20em;
+              avalue: 0;
+              padding: .2em;
+              margin: 20em;
+              avalue: 0;
+          </pre>
+        </code>
+    </li>
+    <!-- li>h3+code>pre -->
+    <li>
+      <h3>使用雪碧图 CSS 精灵图</h3>
+      <code>
+        <pre></pre>
+      </code>
+    </li>
+  </ol>
+</body>
+</html>

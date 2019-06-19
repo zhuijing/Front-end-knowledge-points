@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BFC  块格式化上下文 (Block Formatting Context)</title>
+  <style>
+    /* .out {
+      border: 10px solid red;
+      float: left;
+      position:absolute;
+      display: inline-block;
+      display: table-cell
+      display: table;
+      overflow: hidden;      
+      display: flow-root
+    } */
+    .clearfix::after { 
+      content: "";
+      display: block; 
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <h1>块格式化上下文 BFC 文档介绍<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context">BFC</a></h1>
+  <H1>让浮动内容和周围的内容等高</H1>
+  <div class="box clearfix">
+    <style>
+      .box {
+        background-color: rgb(224, 206, 247);
+        border: 5px solid rebeccapurple;
+        /* overflow: auto;   创建BFC  */
+        /* overflow: hidden;  创建BFC */
+    }
+
+    .float {
+        float: left;
+        width: 200px;
+        height: 150px;
+        background-color: white;
+        border:1px solid black;
+        padding: 10px;
+    }  
+    </style>
+      <div class="float">我是浮动的盒子</div>
+      <p>我是容器的内容</p>
+  </div>
+  <H1>外边距塌陷</H1>
+  <style lang="">
+    .blue, .red-inner {
+      height: 50px;
+      margin: 10px 0;
+    }
+    .blue {
+      background: blue;
+    }
+    .red-outer {
+      overflow: hidden;
+      background: red;
+    }
+  </style>
+  <div class="blue"></div>
+  <div class="red-outer">
+    <div class="red-inner">red inner</div>
+  </div>
+  <h1>使用display: flow-root</h1>
+  <div class="box1">
+    <style>
+      .box1 {
+          background-color: rgb(224, 206, 247);
+          border: 5px solid rebeccapurple;
+          display: flow-root;
+      }
+
+      .float1 {
+          float: left;
+          width: 200px;
+          height: 150px;
+          background-color: white;
+          border:1px solid black;
+          padding: 10px;
+      }      
+    </style>
+      <div class="float1">I am a floated box!</div>
+      <p>I am content inside the container.</p>
+  </div>
+
+</body>
+</html>

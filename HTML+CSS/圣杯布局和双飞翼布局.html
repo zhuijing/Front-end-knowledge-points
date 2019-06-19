@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>圣杯布局和双飞翼布局</title>
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    footer,header {
+        clear: both;
+      }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>圣杯布局</h1>
+  </header>
+  <div id="container1">
+    <style>
+      #container1 {
+        padding-left: 200px; 
+        padding-right: 150px;
+        min-width: 550px;
+      }
+      #container1 .column {
+        float: left;
+      }
+      #container1  #center{
+        background: #000;
+        width: 100%;
+        color: red;
+      }
+      #container1 #left{
+        width: 200px;
+        margin-left: -100%;
+        background: red;
+        position: relative;
+        right: 200px;
+      }
+      #container1 #right{
+        width: 150px;
+        background: blue;
+        margin-right: -150px; 
+      }
+      
+    </style>
+    <div id="center" class="column">内容内容内容内容内容
+      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内
+      容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内
+      容内容内容内容内容</div>
+    <div id="left" class="column">leftleftleftleftleft
+      leftleftleftleftleftleftleftleftleftleftleftleftle
+      ftleftleftleftleftleftleftleftleftleftleftleftlef
+      tleftleftleftleftleftleftleftleftleftleft</div>
+    <div id="right" class="column">rightrightrightr
+      ightrightrightrightrigh
+      trightrightrightrightrig
+      htrightrightrightrightrigh
+      trightrightr
+      ightrightrightrightrig
+      htrightrightrightrightrigh
+      trightrightrightrightrightrig
+      htrightrightrightrightrightrightrigh
+      trightrightrightrightrightrightright</div>
+  </div>
+  
+  <div class="双飞翼">
+    <style>
+      .双飞翼{
+        min-width: 500px;
+      }
+      #container2 {
+        width: 100%;
+      }
+      .column2 {
+        float: left;
+      }
+      #container2 #center2 {
+        margin-left: 200px;
+        margin-right: 150px;
+        background: #000;
+        color: blueviolet;
+      }
+      #left2 {
+        width: 200px; 
+        background: red;
+        margin-left: -100%;
+      }
+      #right2 {
+        width: 150px; 
+        background: blue;
+        margin-left: -150px;
+      }
+    </style>
+    <div id="container2"  class="column2">
+      <div id="center2">内容</div>
+    </div>
+    <div id="left2" class="column2">left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left </div>
+    <div id="right2" class="column2">right right right right right right right right right right right right right right right right right right right right right right right right right right right right right right right right right right right right right right</div>
+  </div>
+  <header>
+    <h1>flex实现双飞翼</h1>
+  </header>
+  <div id="flex">
+    <style>
+      #flex {
+          display: flex;
+          width: 100%;
+      }
+      #flex #center {
+          flex: 1;
+          background: #000;
+          color: red;
+      }
+      #flex #left {
+          flex: 0 0 200px;
+          order: -1;
+          background: burlywood;
+      }
+      #flex #right {
+          flex: 0 0 150px;
+          background: rebeccapurple;
+      }
+    </style>
+    <div id="flex">
+      <div id="center">center</div>
+      <div id="left">left</div>
+      <div id="right">right</div>
+    </div>
+  </div>
+  <footer>
+    我是脚
+  </footer>
+</body>
+</html>

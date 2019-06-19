@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>实现无缝滑屏</title>
+  <style>
+    .box{
+      width: 200px;
+      height: 130px;
+      overflow: hidden;
+      margin: 0 auto;
+      margin-top: 100px;
+      background: blue;
+    }
+    ul {
+      display: flex;
+      /* transition: all .5s cubic-bezier(0.445, 0.05, 0.55, 0.95); */
+    }
+    ul li{
+      width: 200px;
+      height: 130px;
+      font-size: 50px;
+      line-height: 130px;
+      text-align: center;
+      background: red;
+      flex-shrink: 0;
+      
+    }
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    li{
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+    <p>在UL最后多复制一个和第一个li一样的li，整体移动ul，在移动完最后一个li后，把ul的margin-left赋值为0</p>
+
+  <div class="box">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>1</li>
+    </ul>
+   
+  </div>
+  <p>只给第一个li加动效，等动效过后把第一个添加到最后</p>
+  <div class="box">
+      <ul class="ul2">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+        </ul>
+  </div>
+  <script>
+    var oUl = document.querySelector('ul');
+    var aLis = oUl.querySelectorAll('li');
+    var alisLen = aLis.length; // 5
+    var i = 0;
+    // oUl.addEventListener('mouseover',function(e) {
+    //   console.log(e.target)
+    // })
+    // oUl.addEventListener('mouseout',function(e) {
+    //   console.log(e.target)
+    // })
+    
+    setInterval(() => {
+      i ++;
+      // 0 1 2 3 4
+      if( i <= alisLen -1 ) {
+        oUl.style.transition = 'all .5s cubic-bezier(0.445, 0.05, 0.55, 0.95)';
+        oUl.style.marginLeft = i * -200 + 'px';
+        oUl.addEventListener("webkitTransitionEnd", function() {
+          // console.log(i,'--')
+          if(i === alisLen -1) {
+            oUl.style.marginLeft = 0;
+            oUl.style.transition = 'none';
+            i = 0;
+          }
+        });
+      }
+    }, 2000);
+  </script>
+
+  <script>
+    var oUl2 = document.querySelector('.ul2');
+    setInterval(() => {
+      var aLis = oUl2.querySelectorAll('li');
+      aLis[0].style.marginLeft = '-200px';
+      aLis[0].style.transition = 'all .5s cubic-bezier(0.445, 0.05, 0.55, 0.95)';
+      aLis[0].addEventListener("webkitTransitionEnd", function() {
+          oUl2.appendChild(aLis[0])
+          aLis[0].style.marginLeft = 0;
+      });
+    }, 2000);
+  </script>
+</body>
+</html>

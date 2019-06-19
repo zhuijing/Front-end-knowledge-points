@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS 常见两列布局、三列布局</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box1">
+    <style>
+      .box1 .left {
+        width: 300px;
+        height: 200px;
+        background: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .box1 .right {
+        background: #0FC;
+        margin-left: 300px;
+        height: 200px;
+      }
+    </style>
+    <div class="left">
+      left
+    </div>
+    <div class="right">
+      right
+    </div>
+  </div>
+  <div class="">
+    第一种两列布局
+  </div>
+  <div class='box2'>
+    <style>
+      .box2 .left {
+        float: left;
+        width: 300px;
+        height: 200px;
+        background: beige;
+      }
+
+      .box2 .right {
+        overflow: auto;
+        height: 200px;
+        background-color: red;
+      }
+    </style>
+    <div class="left">left</div>
+    <div class="right">right</div>
+  </div>
+  <div class="">
+    第二种两列布局
+  </div>
+  <div class="box5">
+    <style>
+      .box5{
+        display: flex;
+      }
+      .box5 .left{
+        display: flex;
+        width: 300px;
+        height: 200px;
+        background: #acb;
+      }
+      .box5 .right{
+        flex: 1;
+        height: 200px;
+        background: #caa
+      }
+    </style>
+      <div class="left">left</div>
+      <div class="right">right</div>
+  </div>
+  <div class="">
+      第三种两列布局
+  </div>
+  <div class='box3'>
+    <style>
+      .box3{
+        position: relative;
+      }
+      .box3 .left, .box3 .right {
+        position: absolute;
+        top: 0;
+        width: 300px;
+        height: 200px;
+        background: #facd43;
+      }
+      .box3 .left {
+        left: 0;
+      }
+      .box3 .right {
+        right: 0;
+      }
+      .box3 .middle{
+        height: 200px;
+        margin: 0 300px;
+        background: blue;
+      }
+    </style>
+    <div class="left">left</div>
+    <div class="middle">middle</div>
+    <div class="right">right</div>
+  </div>
+  <div class="">
+      第一种三列布局
+  </div>
+  <div class='box4'>
+      <style>
+        .box4 .left, .box4 .right {
+          width: 300px;
+          height: 200px;
+          background: #facd43;
+        }
+        .box4 .left {
+          float: left;
+        }
+        .box4 .right {
+          float: right;
+        }
+        .box4 .middle{
+          height: 200px;
+          margin: 0 300px;
+          background: hotpink;
+        }
+      </style>
+      <div class="left">left</div>
+      <div class="right">right</div>
+      <div class="middle">middle</div>
+  </div>
+  <div>
+      第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局第二种三列布局
+  </div>
+  <div class="box6">
+    <style>
+      .box6 {
+        display: flex;
+      }
+      .box6 .left, .box6 .right {
+        width: 300px;
+        height: 200px;
+      }
+      .box6 .middle{
+        flex: 1;
+        height: 200px;
+        background: red;
+      }
+    </style>
+    <div class='left'>left</div>
+    <div class='middle'>middle</div>
+    <div class='right'>right</div>
+  </div>
+</body>
+
+</html>

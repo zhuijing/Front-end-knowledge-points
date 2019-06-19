@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片懒加载</title>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+  <style>
+    img{
+      width: 200px;
+      height: 500px;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <img class='lazy' data-original='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560927542163&di=1076cac0a5c305cc7323c1b6334c4e2e&imgtype=0&src=http%3A%2F%2F01.minipic.eastday.com%2F20160910%2F20160910185838_7562524948e5070fbfc6ca586d4117f6_8.jpeg' src="" alt="">
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <img src="" data-original="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560927785298&di=b1ed628907c887a5c2a4622e7f7c7852&imgtype=jpg&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D3368282240%2C836617794%26fm%3D214%26gp%3D0.jpg" class="lazy" >
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <img src="" alt="" class="lazy" data-original="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560927542163&di=080799fe8778898235117dac961ce45f&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201710%2F28%2F20171028200556_eEnz5.jpeg">
+  <script>
+    $(function() {
+        $("img.lazy").lazyload({
+          placeholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC",
+          effect : "fadeIn"
+        });
+    });
+  </script>
+</body>
+</html>

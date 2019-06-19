@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS 动画、</title>
+  <style>
+    /* @keyframes 
+      0%   {top:0px;}
+      25%  {top:200px;}
+      50%  {top:100px;}
+      75%  {top:200px;}
+      100% {top:0px;} */
+      @keyframes mymove
+      {
+        0%   {top:0px; left:0px; background:hotpink;}
+        25%  {top:0px; left:100px; background:blue;}
+        50%  {top:100px; left:100px; background:yellow;}
+        75%  {top:100px; left:0px; background:green;}
+        100% {top:0px; left:0px; background:red;}
+      }
+    #myDIV {
+      width:100px;
+      height:100px;
+      background:red;
+      position:relative;
+      animation:mymove 5s 2s infinite;
+    }
+    h1{
+      text-shadow: 2px 2px 3px  #ff0000;
+    }
+  </style>
+</head>
+<body>
+    <h1><a href="https://cubic-bezier.com/#.17,.67,.83,.67">css贝塞尔曲线可视化</a></h1>
+
+  <p>
+    <pre>
+        animation-name: 动画名称，对应@keyframes
+        animation-duration: 间隔
+        animation-timing-function: 曲线
+        animation-delay: 延迟
+        animation-iteration-count: 次数  常用值 infinite: 循环动画
+        animation-direction: 方向   常用值  alternate: 反向播放
+        animation-fill-mode: 静止模式 下的常用值
+        forwards: 停止时，保留最后一帧
+        backwards: 停止时，回到第一帧
+        both: 同时运用 forwards / backwards
+        常用钩子: animationend
+        
+    </pre>
+  </p>
+  <h1>定义和用法</h1>
+  <p>一些 CSS 属性是可以有动画效果的，这意味着它们可以用于动画和过渡。
+      动画属性可以逐渐地从一个值变化到另一个值，比如尺寸大小、数量、百分比和颜色。
+  </p>
+  <div id="myDIV">
+    <h1>myDIV</h1>
+  </div>
+</body>
+</html>
+
+
+<!-- https://www.cnblogs.com/fundebug/p/21-method-to-optimize-css-and-speedup-web.html -->

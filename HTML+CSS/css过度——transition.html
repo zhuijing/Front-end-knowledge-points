@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css过度——transition</title>
+  <style>
+    .box{
+      width: 200px;
+      height: 200px;
+      background: red;
+      transition: width 2s cubic-bezier(.17,.67,.76,.31) 1s;
+    }
+    .box:hover{
+      width: 600px;
+      background: blue;
+    }
+  </style>
+  
+</head>
+<body>
+  <h1><a href="https://cubic-bezier.com/#.17,.67,.83,.67">css贝塞尔曲线可视化</a></h1>
+  <div>
+    <pre>
+        transition-property: 属性
+        transition-duration: 间隔
+        transition-timing-function: 曲线
+        transition-delay: 延迟
+        常用钩子: transitionend
+    </pre>
+  </div>
+  <div class="box">
+
+  </div>
+</body>
+</html>

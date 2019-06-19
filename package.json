@@ -1,0 +1,25 @@
+{
+  "name": "front-end-knowledge-points",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newBird01/Front-end-knowledge-points.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newBird01/Front-end-knowledge-points/issues"
+  },
+  "homepage": "https://github.com/newBird01/Front-end-knowledge-points#readme",
+  "devDependencies": {
+    "imagemin": "^6.1.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^8.0.0",
+    "imagemin-webp": "^5.1.0"
+  }
+}
