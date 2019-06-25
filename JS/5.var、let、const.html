@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>5.var、let、const的区别</title>
+</head>
+
+<body>
+  <h3>var和let/const的区别</h3>
+  <ol>
+    <li>块级作用域
+
+    <li> 不存在变量提升</li>
+
+    <li> 暂时性死区
+      <p>只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量</p>
+      <code>
+        <pre>
+            var tmp = 123; // 声明
+            if (true) {
+              tmp = 'abc'; // 报错 因为本区域有tmp声明变量
+              let tmp; // 绑定if这个块级的作用域 不能出现tmp变量
+            }
+        </pre>
+      </code>
+    </li>
+
+    <li> 不可重复声明</li>
+
+    <li> let、const声明的全局变量不会挂在顶层对象下面</li>
+    <p>
+      
+    </p>
+  </ol>
+  <h3>const命令两个注意点:</h3>
+  <ol>
+    <li>const 声明之后必须马上赋值，否则会报错</li>
+    <li>const 简单类型一旦声明就不能再更改，复杂类型(数组、对象等)指针<i style="color:red">指向的地址不能更改</i> ，内部数据可以更改。</li>      
+  </ol>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>new关键字的作用</title>
+</head>
+<body>
+  <ol>
+    <li>创建临时对象</li>
+    <li>将临时对象的this指向自己</li>
+    <li>将临时对象的（原型__proto__）指向构造函数的原型</li>
+    <li>把临时对象return出去</li>
+  </ol>
+  <p>
+    <pre>
+      别人的解释
+      创建了一个全新的对象。
+      这个对象会被执行 [[Prototype]]（也就是 proto）链接。
+      生成的新对象会绑定到函数调用的 this。
+      通过 new创建的每个对象将最终被 [[Prototype]]链接到这个函数的 prototype对象上。
+      如果函数没有返回对象类型 Object(包含 Functoin, Array, Date, RegExg, Error)，那么 new表达式中的函数调用会自动返回这个新的对象。
+    </pre>
+  </p>
+</body>
+</html>

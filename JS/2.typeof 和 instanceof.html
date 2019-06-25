@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>2.typeof 和 instanceof</title>
+</head>
+<body>
+  <h1>typeof 常用作一下判断</h1>
+  <code>
+    <pre>
+        function a(){}
+        typeof a  // "function"
+        
+        typeof 1  // "number"
+        
+        typeof 'e' // "string"
+        
+        typeof true // "boolean"
+        
+        typeof Symbol(2) // "symbol"
+        
+        typeof undefined // "undefined"
+
+        typeof new String('34') // object
+    </pre>
+  </code>
+  <h1>可以准确判断数据类型</h1>
+  <code>
+    <pre>
+        Object.prototype.toString.call(1) // "[object Number]"
+
+        Object.prototype.toString.call('hi') // "[object String]"
+        
+        Object.prototype.toString.call({a:'hi'}) // "[object Object]"
+        
+        Object.prototype.toString.call([1,'a']) // "[object Array]"
+        
+        Object.prototype.toString.call(true) // "[object Boolean]"
+        
+        Object.prototype.toString.call(() => {}) // "[object Function]"
+        
+        Object.prototype.toString.call(null) // "[object Null]"
+        
+        Object.prototype.toString.call(undefined) // "[object Undefined]"
+        
+        Object.prototype.toString.call(Symbol(1)) // "[object Symbol]"
+
+        Object.prototype.toString.call(new Date()) // "[object Date]"
+
+        Object.prototype.toString.call(new RegExp()) // "[object RegExp]"
+
+    </pre>
+  </code>
+  <p>
+    <pre>
+        instanceof 检测一个对象A是不是另一个对象B的实例的原理是：
+        对象B的原型是否在对象A的原型链上
+        查看对象B的prototype指向的对象是否在对象A的[[prototype]]链上。
+        如果在，则返回true,如果不在则返回false。不过有一个特殊的情况，当对象B的prototype为null将会报错(类似于空指针异常)。
+        var arr = []
+        arr instanceof  Array // true
+        arr instanceof Object // true
+        arr.__proto__.constructor === Array // true
+        arr.__proto__.__proto__.constructor  === Object // true
+    </pre>
+  </p>
+    
+    <script>
+      function Cat(){}
+      Cat.prototype = {}
+      
+      function Dog(){}
+      Dog.prototype ={}
+      
+      var dog1 = new Dog();
+      console.log(dog1 instanceof Dog);//true
+      console.log(dog1 instanceof Object);//true
+      
+      Dog.prototype = Cat.prototype;
+      console.log(dog1 instanceof Dog);//false
+      console.log(dog1 instanceof Cat);//false
+      console.log(dog1 instanceof Object);//true;
+      
+      var  dog2= new Dog();
+      console.log(dog2 instanceof Dog);//true
+      console.log(dog2 instanceof Cat);//true
+      console.log(dog2 instanceof Object);//true
+      
+      Dog.prototype = null;
+      var dog3 = new Dog();
+      console.log(dog3 instanceof Cat);//false
+      console.log(dog3 instanceof Object);//true
+      console.log(dog3 instanceof Dog);//error
+    </script>
+   
+</body>
+</html>

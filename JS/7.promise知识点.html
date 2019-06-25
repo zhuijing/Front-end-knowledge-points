@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>7.promise知识点</title>
+</head>
+<body>
+  <h1> <a href="http://es6.ruanyifeng.com/#docs/promise">阮一峰老师的Promise</a></h1>
+  <h1>promise化 setTimeout </h1>
+  <h2><a href="http://wiki.commonjs.org/wiki/Promises/A">PromiseA规范</a> <a href="https://promisesaplus.com/">PromiseA+</a></h2>
+  <h3><a href="https://github.com/ygm125/promise/blob/master/promise.js">手写Promise 一</a></h3>
+  <h2><a href="https://cloud.tencent.com/developer/article/1128103">手写Promise 二</a></h2>
+  <h3><a href="https://cloud.tencent.com/developer/article/1009894">手写Promise 三</a></h3>
+  <p>
+    <code>
+      <pre>
+          var timer = function(fn,time) {
+            return function() {
+              return new Promise(resolve,reject => {
+                setTimeout(function (){
+                  fn()
+                  resolve()
+                },time)
+              })
+            }
+          }
+          timer(function () {
+            console.log('1')
+         }, 1000) 
+      </pre>
+    </code>
+  </p>
+</body>
+</html>

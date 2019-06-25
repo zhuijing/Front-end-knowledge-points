@@ -1,45 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>测试文件随便改</title>
+  <title>Document</title>
   <style>
-    .box,.box{
-      width: 200px;
-      height: 200px;
-      background: red;
-      margin-top: 1500px;
-    }
-    body{
-      height: 2000px;
-    }
-    *{
+    * {
       margin: 0;
       padding: 0;
     }
+    html, body {
+      height: 100%;
+      text-align: center;
+    }
+    .content {
+      padding-bottom: 50px;
+    }
+    .wrap {
+      margin: 0 auto;
+      min-height: 100%;
+    }
+    .footer {
+      height: 50px;
+      line-height: 50px;
+      background-color: green;
+      margin-top: -50px;
+    }
   </style>
 </head>
-<body>
-  <div class="box"></div>
-  <div class="box1"></div>
-  <div style="display:none">
-      <img class="lazyload" src="https://media3.giphy.com/media/k5GuJn7VslbpGQqHUB/200w.webp">
-  </div>
-  <script>
-    var io = new IntersectionObserver(function(e){
-      console.log(e)
-    }, {});
-    // 开始观察
-    io.observe(document.querySelector('.box'));
-    io.observe(document.querySelector('.box1'));
 
-    // 停止观察
-    // io.unobserve(element);
-    // 关闭观察器
-    // io.disconnect();
-    
-  </script>
+<body>
+  <div class="wrap">
+    <div class="content">
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p> <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p> <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p> <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p> <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p> <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p> <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+    </div>
+  </div>
+  <div class="footer">footer</div>
 </body>
+
 </html>

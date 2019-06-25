@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>闭包Closure</title>
+</head>
+
+<body>
+  <h1>我觉得闭包是一种技术，没法定义。 能把函数内部的变量让外部访问的技术就是闭包</h1>
+  <h1>闭包的用法：模块化与柯里化，实现类的私有属性私有方法的实现</h1>
+  <p>
+    <pre>
+        闭包是一种特殊的对象。
+
+        它由两部分组成。执行上下文(代号A)[下面的createCounter]，以及在该执行上下文中创建的函数（代号B【下面的myFunction】）。
+
+        当B执行时，如果访问了A中变量对象中的值【counter】，那么闭包就会产生。
+
+        在大多数理解中，包括许多著名的书籍，文章里都以函数B的名字代指这里生成的闭包。
+        而在chrome中，则以执行上下文A的函数名代指闭包。
+
+        因此我们只需要知道，一个闭包对象，由A、B共同组成，在以后的篇幅中，我将以chrome的标准来称呼。
+        <code>
+           function createCounter() {
+              let counter = 0
+              const myFunction = function() {
+                counter = counter + 1
+                return counter
+              }
+              return myFunction
+            }
+            const increment = createCounter()
+            const c1 = increment()
+            const c2 = increment()
+            const c3 = increment()
+            console.log('example increment', c1, c2, c3)
+          
+        </code>
+    </pre>
+  </p>
+  <h1>用闭包做模块化</h1>
+  <code>
+    <pre>
+        (function () {
+            var a = 10;
+            var b = 20;
+        
+            function add(num1, num2) {
+                var num1 = !!num1 ? num1 : a;
+                var num2 = !!num2 ? num2 : b;
+        
+                return num1 + num2;
+            }
+        
+            window.add = add;
+        })();
+        
+        add(10, 20);
+    </pre>
+  </code>
+  <script>
+    var fn = null;
+    function foo() {
+      var a = 2;
+      function innnerFoo() {
+        console.log(a);
+      }
+      fn = innnerFoo; // 将 innnerFoo的引用，赋值给全局变量中的fn
+    }
+    function bar() {
+      fn(); // 此处的保留的innerFoo的引用
+    }
+    foo();
+    bar(); // 2
+  </script>
+</body>
+
+</html>

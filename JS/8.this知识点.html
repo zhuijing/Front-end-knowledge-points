@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>this关键字</title>
+  <style>
+    .red{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>浏览器下</h1> 
+  <p>
+    JS中的this关键字由函数的调用者决定，谁调用就this就指向哪个。如果找不到调用者，浏览器环境下this将指向windows对象。
+    <!-- 通过谁找到函数内存地址引用，this就指向谁 -->
+    <i class="red">con是装宝藏的盒子， this是盒子里的宝藏，  foo是一把钥匙 ，谁用钥匙把盒子打开， 盒子里的宝藏就是谁的</i>
+    <pre>
+      var con = function (){
+        console.log(this)
+      }
+      var obj = {
+        foo: con 
+      }
+      obj.foo() // foo 就是钥匙
+      
+      var bar = obj.foo; // bar就是钥匙
+      bar() // window.bar() // window就是用钥匙的那个人
+
+      var person = {
+        p1: {
+          caozep: {
+            me: con 
+          }
+        }
+      }
+      person.p1.caozep.me()// me就是钥匙， caozep就是用钥匙的那个人
+    </pre>
+    
+  </p> 
+  <script>
+    var length = 10;
+    function fn() {
+        console.log(this.length);
+    }
+    var obj = {
+      length: 5,
+      method: function(fn) {
+        fn();
+        arguments[0]();
+      }
+    };
+    
+    obj.method(fn, 1);//输出是什么？
+  </script>
+</body>
+</html>

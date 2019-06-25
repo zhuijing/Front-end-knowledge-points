@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>3.js 的原型链，继承</title>
+</head>
+<body>
+  <p style="color:blueviolet">
+      首先，我们先来回顾一下构造函数，原型和实例之间的关系。当我们创建一个构造函数时，<i style="color:red">构造函数会获得一个prototype属性，</i>该属性是一个指针，指向一个原型对象 ，原型对象包含一个constructor属性，该属性也是一个指针，指向构造函数，而当我们创建构造函数的实例时，该实例其实会获得一个[[Prototype]]属性，指向原型对象。</p>
+  <h1>原型链</h1>
+  <p>原型链是由原型对象组成</p>
+  <p>定义：每个对象都有 __proto__ 属性，<i style="color:red">指向了创建该对象的构造函数的原型</i>，__proto__ 将对象连接起来组成了原型链</p>
+  <p>作用：是一个用来实现<i style="color:red">继承和共享属性的</i>有限的对象链。    </p>
+  <p>属性查找机制: 当查找对象的属性时，如果实例对象自身不存在该属性，则沿着原型链往上一级查找，找到时则输出，不存在时，则继续沿着原型链往上一级查找，直至最顶级的原型对象Object.prototype，如还是没找到，则输出undefined；</p>
+  <p>属性修改机制: 只会修改实例对象本身的属性，如果不存在，则进行添加该属性，<strong  style="color:red">如果需要修改原型的属性时，则可以用: b.prototype.x = 2；</strong>但是这样会造成所有继承于该对象的实例的属性发生改变。</p>
+  <h1>继承</h1>
+  <h2>方式一 原型链继承【原型对象继承】</h2>
+  <h3>基本思想：使用父类实例对象作为子类原型对象。此时子类的原型包含父类定义的实例属性，享有父类原型定义的的属性。</h3>
+  <p style="color:red;">注意：在给子类原型添加属性或者方法的时候需要在将父类实例赋值给子类的原型对象后</p>
+  <p style="color:red;">注意：给子类的原型添加方法或者属性的时候要通过【.】的方式来添加。<strong style="color:blue">不能</strong> 用subType.prototype = {} 来添加</p>
+  <p>原型链继承缺点：父类中的属性如果是引用类型的话，其子类的其中一个实例改变了该属性就会影响其他实例</p>
+  <p>
+    <code>
+      <pre>
+          var Animal = function(name,type) {
+            this.mao = '一身毛';
+            this.眼睛 = ['左眼','右眼']
+          }
+          Animal.prototype.sayName = function() {
+            console.log(this.name)
+          }
+          var Dog = function(age) {
+            this.age = age;
+          }
+          Dog.prototype = new Animal()
+          // 修改子构造函数的原型的构造器属性
+          Dog.prototype.constructor = Dog;
+          var dog1 = new Dog(99)
+          console.log(dog1)
+          dog1.眼睛.push('天眼')
+          var dog2 = new Dog(110)
+          console.log(dog2)
+          console.log(dog2.眼睛)
+      </pre>
+    </code>
+  </p>
+  <h1>方式二 原型式继承</h1>
+  <h3>主要思路一： 将父类的prototype赋值给子类的prototype</h3>
+  <p>
+    <pre>
+        function Animal() {}　　
+        Animal.prototype.species = "动物";
+        Cat.prototype = Animal.prototype;　　
+        Cat.prototype.constructor = Cat;　　
+        var cat1 = new Cat("大毛", "黄色");　　
+        alert(cat1.species); // 动物
+        优点: 是效率比较高（不用执行和建立Animal的实例了）
+        ，比较省内存。
+        缺点: 是 Cat.prototype和Animal.prototype现在指向了同一个对象，
+        那么任何对Cat.prototype的修改，都会反映到Animal.prototype。
+        Cat.prototype.constructor = Cat;这里将Animal的 prototype.constructor 也该变了
+        alert(Animal.prototype.constructor); // Cat
+        所以，上面这一段代码其实是有问题的
+    </pre>
+  </p>
+  <h3>主要思路二 ：利用一个空的构造函数为桥梁，将一个对象作为原型创建新对象，这样新生成的对象都可以通过原型链共享这个原型对象的属性。</h3>
+  <p style="color:red">缺点和注意点 都和原型链一样</p>
+  <p>
+    <code>
+      <pre>
+          function extend(Child, Parent) {
+            var F = function() {};　　　　
+            F.prototype = Parent.prototype;　　　　
+            Child.prototype = new F();　　　　
+            Child.prototype.constructor = Child;　　　　
+            Child.uber = Parent.prototype;　
+            意思是为子对象设一个uber属性，这个属性直接指向父对象的prototype属性。
+            （uber是一个德语词，意思是"向上"、"上一层"。）
+            这等于在子对象上打开一条通道，可以直接调用父对象的方法。
+            这一行放在这里，只是为了实现继承的完备性，纯属备用性质　
+        }
+          // 创建父构造函数
+          function SuperClass(name){}
+          // 设置父构造器的原型对象
+          SuperClass.prototype.name = 'name'
+          SuperClass.prototype.showName = function(){
+            alert(this.name);
+          }
+          // 创建子构造函数
+          function SubClass(){
+          }
+          extend(SubClass, SuperClass);　　
+          
+          var child = new SubClass()
+      </pre>
+    </code>
+  </p>
+  <h1>方式三 构造函数继承:使用call和apply借用其他构造函数的成员, 可以解决给父构造函数传递参数的问题, 但是获取不到父构造函数原型上的成员.也不存在共享问题</h1>
+  <p>
+    <pre>
+        优点：
+
+        由父类构造函数定义的实例属性被子类实例继承以后仍然是独立的实例属性。（参见demo3.5）
+        在创建继承关系时，可以传参。理由同优点1，传参不会影响所有实例。（参见demo3.5）
+        可以实现多继承。因为在子类构造函数内部可以借用多个父类构造函数。
+        缺点
+        
+        父类原型定义的公共属性和方法无法被继承。也就是每个实例都会复制父类构造函数的所有内容。
+        父类构造函数发生改动时，可能会影响到子类构造函数以及实例的构造方法，而且这种变动不会影响到之前已经生成的实例。
+        继承关系难以判定，只能判断实例与子类的直接继承关系，实例与父类的继承关系无法判定。
+    </pre>
+    <code>
+      <pre>
+          / 创建父构造函数
+          function Person(name){
+            this.name = name;
+            this.friends = ['小王', '小强'];
+            this.showName = function(){
+               console.log(this.name);
+            }
+          }
+          // 创建子构造函数
+           function Student(name){
+            // 使用call借用Person的构造函数
+            Person.call(this, name);
+           }
+           // 测试是否有了 Person 的成员
+           var stu1 = new Student('Li');
+           var stu2 = new Student('Li2');
+           stu1.showName(); // Li
+           stu1.friends.push('小明吧')
+           console.log(stu1.friends); // ['小王','小强', '小明吧']
+           console.log(stu2.friends); // ['小王','小强']
+           stu1.showName === stu2.showName
+      </pre>
+    </code>
+  </p>
+  <h1>方式四 组合继承【构造函数+原型链】--最常用的继承</h1>
+  <p>
+    <pre>
+        优点：
+        组合继承避免了原型链和借用构造函数的缺陷，融合了它们的优点，现在已经成为js中最常用的继承方法。
+
+        缺点：无论什么情况下，都会调用两次超类型构造函数，
+        一次是在创建子类原型的时候，另一次是在子类型构造函数内部，
+    </pre>
+  </p>
+  <p>
+    <code>
+      <pre>
+        function Super(name) {
+          this.name = name;
+          this.colors = ['red','blue']
+        }
+        Super.prototype.sayName = function(){ console.log(this.name)}
+
+        function SubClass(name,age){
+          Super.call(this,name);
+          this.age = age;
+        }
+        SubClass.prototype = new Super()
+        SubClass.prototype.constructor = SubType;
+        SubType.prototype.sayAge = function() {
+          console.log(this.age);
+        }
+        var instance1 = new SubType("Nicholas", 29);
+        var instance2 =new SubType("Greg", 27);
+        instance1.colors.push("black");
+        console.log(instance1.colors); // red,blue,black
+        console.log(instance2.colors); // red,blue
+        instance1.sayName(); // Nicholas
+        instance2.sayName(); // 29
+        instance1.sayAge(); // Greg
+        instance2.sayAge(); // 27 
+      </pre>
+    </code>
+  </p>
+  <h1>方式五 寄生式继承</h1>
+  <h3>主要思路：在原型式继承的基础上，对返回的原型进行了增强。</h3>
+  <p>我们其实可以把寄生式继承看做是传进去一个对象，然后对该对象进行一定的加工，也就是增加一些方法来增强该对象，然后再返回一个包含新方法的对象的一个过程。</p>
+  <p>
+    <code>
+      <pre>
+        function object(o) {
+            function F() {}     // 建一个空的构造函数
+            F.prototype = o;    // 将F的原型对象指向o
+            return new F();     // 返回F的实例，这样返回的实例原型即为传入的o
+        }
+        function createAnother(obj) {
+            var clone = object(obj);    // 通过调用函数来创建一个新对象
+            clone.favouriteColors = ['red'];  // 以某种方式来增强这个对象
+            clone.sayHi = function() {
+                console.log('hi');
+            }
+            return clone;      // 返回这个对象
+        }
+        var person = {
+            name: 'ZhangSan',
+            hobbies: ['painting', 'running'],
+            friends: ['LiSi', 'WangWu']
+        };
+        
+        var anotherPersonOne = createAnother(person);
+        console.log(anotherPersonOne.favouriteColors); // ['red']
+        anotherPersonOne.sayHi();  // hi
+        var anotherPersonTwo = createAnother(person);
+        anotherPersonTwo.favouriteColors.push('white'); 
+        console.log(anotherPersonOne.favouriteColors);  // ['red']
+        console.log(anotherPersonTwo.favouriteColors);  // ['red', 'white']
+      </pre>
+    </code>
+  </p>
+  <p>
+    用Object.createz做个简化版
+    <code>
+      <pre>
+          // demo4.6
+          function createAnother(obj) {
+              var clone = Object.create(obj, {
+                  favouriteColors: {
+                      value: ['red']
+                  },
+                  sayHi: {
+                      value: function() {
+                          console.log('hi');
+                      }
+                  }
+              });
+              return clone;
+          }
+          var person = {
+              name: 'ZhangSan',
+              hobbies: ['painting', 'running'],
+              friends: ['LiSi', 'WangWu']
+          };
+          
+          var anotherPersonOne = createAnother(person);
+          console.log(anotherPersonOne.favouriteColors); // ['red']
+          anotherPersonOne.sayHi();  // hi
+          var anotherPersonTwo = createAnother(person);
+          anotherPersonTwo.favouriteColors.push('white'); 
+          console.log(anotherPersonOne.favouriteColors);  // ['red']
+          console.log(anotherPersonTwo.favouriteColors);  // ['red', 'white']
+      </pre>
+    </code>
+  </p>
+  <p>
+    <pre>
+        优点：
+        为原型添加属性和方法更加方便。
+        新增加的属性和方法是独立的。（参见demo4.5和demo4.6）
+        缺点：
+        新增加的函数无法复用。
+    </pre>
+  </p>
+  <h1>方式六 寄生组合继承 (组合 + 寄生）—— 最完美的继承模式</h1>
+  <h3>主要思路：在原型式继承的基础上，对返回的原型进行了增强。</h3>
+  <p>
+    <code>
+      <pre>
+        function inheritPrototype(subType,superType) {
+          var prototype = Object.create(superType.prototype);// 创建对象
+          prototype.constructor= subType;// 增强对象 ,修复constructor指向问题
+          subType.prototype = prototype// 指定对象
+        }
+        function SuperType(name) {
+          this.name = name;
+          this.colors = ["red","blue","green"]
+        }
+        SuperType.prototype.sayName = function() {
+          console.log(this.name);
+        }
+        function SubType(name,age) {
+          SuperType.call(this,name);
+          this.age = age;
+        }
+        inheritPrototype(SubType,SuperType);
+        SubType.prototype.sayAge = function() {
+          console.log(this.age);
+        }
+      </pre>
+    </code>
+  </p>
+  <p>
+    <pre>
+        优点：
+        近乎完美，父类的实例属性不会出现在子类的原型而是独立出现在各个子类实例，而父类的原型属性被copy到了子类中，子类可以共享父类和子类原型定义的属性。
+       
+       缺点：
+       不能判断实例与父类型的继承关系
+    </pre>
+  </p>
+  <p>
+    <pre>
+        6. 总结
+        其实理解继承，主要是理解构造函数，实例属性和原型属性的关系。要想实现继承，将不同的对象或者函数联系起来，总共就以下几种思路：
+        
+        原型链：父类的实例当做子类的原型。如此子类的原型包含父类定义的实例属性，享有父类原型定义的的属性。
+        借用构造函数：子类直接使用父类的构造函数。如此子类的实例直接包含父类定义的实例属性。
+        原型式：复制父类原型属性给子类原型。如此，子类实例享有父类定义的原型属性。
+        寄生式：思路与3一样，只是利用工厂模式对复制的父类原型对象进行增强。
+        然后，1，2思路结合，实例属性继承用借用构造函数保证独立性，方法继承用原型链保证复用性，就是组合模式。
+         4，2思路结合，或者说3，4与1，2思路结合，实例属性继承用借用构造函数保证独立性，方法继承用原型复制增强的方式，就是寄生组合模式。
+    </pre>
+  </p>
+</body>
+</html>
+
+
+
+
+
