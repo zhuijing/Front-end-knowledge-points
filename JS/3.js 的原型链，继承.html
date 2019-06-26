@@ -16,6 +16,20 @@
   <p>属性查找机制: 当查找对象的属性时，如果实例对象自身不存在该属性，则沿着原型链往上一级查找，找到时则输出，不存在时，则继续沿着原型链往上一级查找，直至最顶级的原型对象Object.prototype，如还是没找到，则输出undefined；</p>
   <p>属性修改机制: 只会修改实例对象本身的属性，如果不存在，则进行添加该属性，<strong  style="color:red">如果需要修改原型的属性时，则可以用: b.prototype.x = 2；</strong>但是这样会造成所有继承于该对象的实例的属性发生改变。</p>
   <h1>继承</h1>
+  <p>
+    <pre>
+        目前我们一直在讨论“对象的原型”，
+        就 JavaScript 的真正实现来说，
+        <strong  style="color:red">其实并不能说对象有 原型，而只能说对象的构造器有原型。</strong> 
+        对于“对象把请求委托给它自己的原型”这句话，更好 的说法是
+        <strong   style="color:red">对象把请求委托给它的构造器的原型</strong>。那么对象如何把请求顺利地转交给它的构造器 的原型呢?
+        JavaScript 给对象提供了一个名为__proto__的隐藏属性，
+        某个对象的__proto__属性默认会指 向它的构造器的原型对象，<strong   style="color:red">即{Constructor}.prototype。</strong>
+        在一些浏览器中，__proto__被公开出来， 我们可以在 Chrome 或者 Firefox 上用这段代码来验证:
+        var a = new Object();
+        console.log ( a.__proto__=== Object.prototype ); // 输出:true
+      </pre>
+  </p>
   <h2>方式一 原型链继承【原型对象继承】</h2>
   <h3>基本思想：使用父类实例对象作为子类原型对象。此时子类的原型包含父类定义的实例属性，享有父类原型定义的的属性。</h3>
   <p style="color:red;">注意：在给子类原型添加属性或者方法的时候需要在将父类实例赋值给子类的原型对象后</p>
