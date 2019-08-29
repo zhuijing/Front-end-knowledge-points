@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>换个思路监听物理返回键</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+      max-width: 300px;
+      height: 200px;
+      margin-bottom: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+      var hiddenProperty = 'hidden' in document ? 'hidden' :    
+    'webkitHidden' in document ? 'webkitHidden' :    
+    'mozHidden' in document ? 'mozHidden' :    
+    null;
+var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+var onVisibilityChange = function(){
+    if (document[hiddenProperty]) {    
+        console.log('页面非激活');
+    }else{
+        console.log('页面激活')
+    }
+}
+document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+    </script>
+</body>
+
+</html>
