@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>缓动动画</title>
+</head>
+<body>
+    <style>
+        .box {
+          width: 100px;
+          height: 100px;
+          background: red;
+        }
+      </style>
+  <div class="box"></div>
+<script>
+/**
+ *  执行补间动画方法
+ *
+ * @param      {Number}    start     开始数值
+ * @param      {Number}    end       结束数值
+ * @param      {Number}    time      补间时间
+ * @param      {Function}  callback  每帧的回调函数
+ */
+function animate(start,end,time,callback) {
+  let startTime = performance.now() // 设置开始的时间戳
+  let differ = end - start // 拿到数值差值
+  // 创建每帧之前要执行的函数
+  function loop() {
+    raf = requestAnimationFrame(loop)// 下一帧调用每帧之前要执行的函数
+    const passTime = performance.now() - startTime// 获取当前时间和开始时间差
+    let per = passTime / time // 计算当前已过百分比
+    console.log('per :', per);
+
+    if(per >= 1) { // 判读如果已经执行
+      per = 1 // 设置为最后的状态
+      console.log(raf,'raf')
+      cancelAnimationFrame(raf) // 停掉动画
+    }
+    const pass = differ * per // 通过已过时间百分比*开始结束数值差得出当前的数值
+    callback(pass) // 调用回调函数，把数值传递进去
+  }
+  let raf = requestAnimationFrame(loop) // 下一阵调用每帧之前要执行的函数
+}
+let box = document.querySelector('.box')
+animate(0, 400, 1000, value => {
+    box.style.transform = `translateX(${value}px)` // 将数值设置给 方块 的 css 属性 transform 属性可以控制元素在水平方向上的位移
+})
+</script>
+</body>
+</html>

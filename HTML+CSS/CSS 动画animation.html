@@ -98,6 +98,33 @@
 </style>
   <div class="adiv"></div>
 
+  <style>
+    .lds-hourglass{
+      display: inline-block;
+    position: relative;
+    width: 72px;
+    height: 72px;
+    }
+    @keyframes lds-hourglass{
+      0%{transform:rotate(0);
+        animation-timing-function:cubic-bezier(.55,.055,.675,.19)}
+      50%{transform:rotate(900deg);
+        animation-timing-function:cubic-bezier(.215,.61,.355,1)}
+      100%{transform:rotate(1800deg)}}
+    .lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 6px;
+    box-sizing: border-box;
+    border: 36px solid #ff8686;
+    border-color: #ffabab transparent #35999e;
+    animation: lds-hourglass 1.2s infinite;
+}
+  </style>
+  <div class="lds-hourglass"></div>
 </body>
 </html>
 

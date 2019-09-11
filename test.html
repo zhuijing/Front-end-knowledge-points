@@ -3,17 +3,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
     * {
       margin: 0;
       padding: 0;
-    }
-    html, body {
-      height: 100%;
-      text-align: center;
     }
     .content {
       padding-bottom: 50px;
@@ -32,76 +28,29 @@
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="content">
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p> <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p> <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p> <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p> <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p> <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p> <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-      <p>content</p>
-    </div>
-  </div>
-  <div class="footer">footer</div>
+  <div class="box"></div>
+<style>
+.box {
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+</style>
+<script>
+  const box = document.querySelector('.box') // 获取方块元素
+let value = 0 // 设置初始值
+// 创建每一帧渲染之前要执行的方法
+var rid ;
+const add = () => {
+
+    value += 5 // 每帧加数值增加5
+    box.style.transform = `translateX(${value}px)` // 将数值设置给 方块 的 css 属性 transform 属性可以控制元素在水平方向上的位移
+    var rid = requestAnimationFrame(add) // 下一帧渲染之前继续执行 add 方法
+
+  }
+var rid  = requestAnimationFrame(add) // 下一帧渲染之前执行 add 方法
+
+</script>
 </body>
 
 </html>

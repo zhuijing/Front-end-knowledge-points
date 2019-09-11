@@ -117,3 +117,98 @@ $(window).load(function() {
   }
 
 });
+
+
+//打开地址并下载
+
+
+var uainfo = navigator.userAgent;
+
+function isWeixin_module() {
+  var uainfo = window.navigator.userAgent.toLowerCase();
+  if (uainfo.match(/MicroMessenger/i) == 'micromessenger') {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function download_link(androidLink, iosLink) {
+  this.andLink = androidLink;
+  this.iosLink = iosLink;
+  this.myBrowser = function () {
+    if (uainfo.indexOf('Android') > -1 || uainfo.indexOf('Linux') > -1) { //安卓手机
+      if (isWeixin_module()) { //微信
+        $(".a_pop").show();
+      } else {
+        var down_lin1 = this.andLink;
+        window.location.href = down_lin1;
+      }
+
+    } else if (!!uainfo.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) { //苹果手机
+      //                if (isWeixin_module()) {
+      //                    $(".i_pop").show();
+      //                }else{
+      //                    var down_lin2 = this.iosLink;
+      //                    window.location.href = down_lin2;
+      //                }
+      var down_lin2 = this.iosLink;
+      window.location.href = down_lin2;
+
+    } else {
+      alert("请用移动设备打开！");
+    }
+  };
+}
+
+function i_download_link(download_url) {
+  if (!!uainfo.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) { //苹果手机
+    //            if (isWeixin_module()) {
+    //                $(".i_pop").show();
+    //            }else{
+    //                window.location.href = download_url;
+    //            }
+    window.location.href = download_url;
+
+  } else {
+    alert("敬请期待！");
+  }
+}
+
+function a_download_link(download_url) {
+  if (uainfo.indexOf('Android') > -1 || uainfo.indexOf('Linux') > -1) { //安卓手机
+    if (isWeixin_module()) { //微信
+      $(".a_pop").show();
+    } else {
+      window.location.href = download_url;
+    }
+
+  } else {
+    alert("敬请期待！");
+  }
+}
+
+function getUrlParams() {
+  var result = {};
+  var params = (window.location.search.split('?')[1] || '').split('&');
+  for (var param in params) {
+    if (params.hasOwnProperty(param)) {
+      paramParts = params[param].split('=');
+      result[paramParts[0]] = decodeURIComponent(paramParts[1] || "");
+    }
+  }
+  return result;
+}
+var params = getUrlParams();
+var androidDownloadUrl = decodeURIComponent(params['android_url']);
+var iosDownloadUrl = decodeURIComponent(params['ios_url']);
+if (androidDownloadUrl && iosDownloadUrl) {
+  var obj = new download_link(androidDownloadUrl, iosDownloadUrl);
+  obj.myBrowser();
+} else if ((androidDownloadUrl != undefined) && (iosDownloadUrl == undefined)) {
+  a_download_link(androidDownloadUrl);
+} else if ((androidDownloadUrl == undefined) && (iosDownloadUrl != undefined)) {
+  i_download_link(iosDownloadUrl);
+} else {
+  alert("敬请期待！");
+}
