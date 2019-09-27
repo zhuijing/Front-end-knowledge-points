@@ -1,0 +1,1 @@
+export { m, n1 } from './index1.js';
