@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>前端知识复习</title>
+
+ 
+</head>
+
+<body>
+  <h3>基础概念</h3>
+  <ol start="1">
+    <li>
+      <h6>行内元素，行内块元素，行内替换元素，块元素有什么区别？分别指出哪些是？</h6>
+      <p>
+        行内元素只能设置左右边距和左右padding ；
+        <br>
+        行内块元素和块元素的区别就是 行内块元素 不换行，其他和块元素一样；
+        <br>
+      </p>
+      <code>
+        <pre>
+          常见的行内元素 有 span i  a 
+        </pre>
+      </code>
+      <code>
+        <pre>
+          常见的块元素  有 div h1-h6 p ol ul li p 等 
+        </pre>
+      </code>
+      <code>
+        <pre>
+          常见行内块元素，也就是行内替换元素 img input select textarea button等 
+        </pre>
+      </code>
+    </li>
+    <li>
+        <h6>一行显示元素的方法有哪些？</h6>
+        <ul>
+          <li>子元素display :inline-block </li>
+          <li>子元素float</li>
+          <li>父元素dispaly :flex</li>
+        </ul>
+      </li>
+    <li>
+      <h6>怎么清除浮动</h6>
+      <ul>
+        <li>子元素clear:both</li>
+      </ul>
+      <code>
+          <pre>
+          
+          </pre>
+        </code>
+    </li>
+    <li>
+      <h6>标准盒模型，怪异盒模型</h6>
+      <p>
+        标准和模型是 ：width/height + border + margin + padding
+        <br>
+        怪异盒模型是 ： 盒子的width = width + border +padding,盒子的height = height + border + padding 
+      </p>
+      <code>
+          <pre>
+            
+          </pre>
+        </code>
+    </li>
+    <li>
+      <h6>flex弹性布局</h6>
+      <p>将父元素设置为 display:flex</p>
+      <code>
+          <pre>
+           
+          </pre>
+      </code>
+    </li>
+    <li>
+      <h6>grid布局</h6>
+      <p></p>
+      <code>
+          <pre>
+            var str = {};
+            console.log(proe)
+          </pre>
+        </code>
+    </li>
+    <li>
+      <h6>简述几种css hack</h6>
+      <ul>
+        <li>一个div中有多个img标签，img标签直接有间隔，可以将img设置为block ,父元素设置为display:flex</li>
+      </ul>
+      <code>
+          <pre>
+            var str = {};
+            console.log(proe)
+          </pre>
+        </code>
+    </li>
+    <li>
+      <h6>href和src的区别</h6>
+      <p>
+        href:Hypertext reference 指定网络资源的位置（超文本引用），比如link a  
+      </p>
+      <p>
+        src:Source 将资源嵌入到当前的位置
+      </p>
+      <code>
+          <pre>
+         
+          </pre>
+        </code>
+    </li>
+    <li title="我是李">
+      <h6>title和alt的区别</h6>
+      <p>title:提示作用</p>
+      <p>alt:占位作用，比如图片加载失败，占位提示</p>
+    </li>
+    <li>
+      <h6>transform和transition和animation</h6>
+      <p>
+          transform:用于改变元素的位置 形状等<br>
+          主要的值由：translate scale rotate skew
+      </p>
+      <p>
+          transition:设置过度效果，需要主动触发<br>
+          transition-property	规定设置过渡效果的 CSS 属性的名称。<br>
+          transition-duration	规定完成过渡效果需要多少秒或毫秒。<br>
+          transition-timing-function	规定速度效果的速度曲线。<br>
+          transition-delay	定义过渡效果何时开始。<br>
+      </p>
+      <code>
+          <pre>
+              div{
+                width:100px;
+                height:100px;
+                background:blue;
+                transition:width 2s;
+                -moz-transition:width 2s; /* Firefox 4 */
+                -webkit-transition:width 2s; /* Safari and Chrome */
+                -o-transition:width 2s; /* Opera */
+              }
+              div:hover
+              {
+                width:300px;
+              }
+          
+          </pre>
+        </code>
+      <p>
+          animation：h5动画；<br>
+          animation-name	规定需要绑定到选择器的 keyframe 名称。。 move<br>
+          animation-duration	规定完成动画所花费的时间，以秒或毫秒计。5s <br>
+          animation-timing-function	规定动画的速度曲线。 linear ease ease-in ease-out cubic-bezier(n,n,n,n)<br>
+          animation-delay	规定在动画开始之前的延迟。 2s<br>
+          animation-iteration-count	规定动画应该播放的次数。infinite 或者数字  <br>
+          animation-direction	规定是否应该轮流反向播放动画。  normal alternate<br> 
+      </p>
+      <code>
+        <pre>
+            div{
+              width:100px;
+              height:100px;
+              background:red;
+              position:relative;
+              animation:mymove 5s infinite;
+              -webkit-animation:mymove 5s infinite; /*Safari and Chrome*/
+            }
+            @keyframes mymove
+              {
+              from {left:0px;}
+              to {left:200px;}
+            }
+        </pre>
+      </code>
+    </li>
+    <li>
+      <h6>nth的选择器</h6>
+      <ul>
+        <li>body p:first-child :last-child :only-child </li>
+        <li>body p:first-of-type :last-of-type :only-of-type<br></li>
+        <li>body p :nth-child(n) nth-last-child(n) p:nth-of-type(2) 	p:nth-last-of-type(2)</li>
+      </ul>
+      
+    </li>
+    <li>
+      <h6>伪类和伪元素</h6>
+      <p>伪类是选择器 ，用来设置样式</p>
+      <p>伪元素是 元素，可以放置内容</p>
+      <code>
+          <pre>
+          伪类： :hover :link :active :nth-child
+          </pre>
+        </code>
+    </li>
+    
+    <li>
+        <h6>去掉滚动条</h6>
+        <p></p>
+        <code>
+            <pre>
+                #divContainer {
+                  overflow: auto;
+                  height: 160px;
+                  width: 260px;
+                  background-color:red;
+                }
+                #divContainer::-webkit-scrollbar {
+                  border-width:1px;
+                }
+            </pre>
+          </code>
+    </li>
+    <li>
+        <h6>元素居中</h6>
+        <ul>
+          <li>
+              <code>
+                  <pre>
+                      &lt;div style="width:600px;height: 600px;background: red;display: flex;justify-content:center;align-items:center;">
+                        &lt;div style="width:200px;height: 200px;background: green;">
+                        &lt;/div>
+                      &lt;/div>
+              </pre>
+            </code>
+          </li>
+          <li>
+              <code>
+                <pre>
+                    &lt;div style="width:600px;height: 600px;background: red;">
+                      &lt;div style="width:200px;height: 200px;background: green;transform: translate(calc(100px + 50%),calc(100px + 50%));">
+                      &lt;/div>
+                    &lt;/div>
+                </pre>
+              </code>
+          </li>
+          <li>
+            <code>
+              <pre>
+                  &lt;div style="width:600px;height: 600px;background: red;position:relative;">
+                    &lt;div style="width:200px;height: 200px;background: green;position: absolute; left: 50%; top:50%; margin: -100px 0 0 -100px">
+                    &lt;/div>
+                  &lt;/div>
+              </pre>
+            </code>
+          </li>
+          <li>
+              <code>
+                  <pre>
+                      &lt;div style="width:600px;height: 600px;background: red;position:relative;">
+                        &lt;div style="width:200px;height: 200px;background: green;position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%)">
+                        &lt;/div>
+                      &lt;/div>
+                  </pre>
+                </code>
+          </li>
+        </ul>
+        
+      </li>
+    <li>
+      <h6>viewport所有的属性有哪些</h6>
+      <ul>
+        <li>
+          width: device-width
+        </li>
+        <li>
+          inital-scale:设置页面的初始缩放值，为一个数字，可以带小数。
+        </li>
+        <li>
+            (3)minimum-scale:允许用户的最小缩放值，为一个数字，可以带小数。
+        </li>
+        <li>
+            (4)maximum-scale:允许用户的最大缩放值，为一个数字，可以带小数。
+        </li>
+        <li>
+            user-scalable:是否允许用户进行缩放，值为‘no’或者‘yes’。
+        </li>
+      </ul>      
+    </li>
+    <li>
+      <h6>如何理解HTML结构的语义化</h6>
+      <p>
+        所谓标签语义化是就是，标签合理嵌套，有利于搜索引擎。
+      </p>
+      
+    </li>
+    <li>
+        <h6>常用的媒体查询</h6>
+        <p>
+          @media screen and (min-width:500px;) and (max-width:800px)
+        </p>
+        
+      </li>
+    <li>
+      <h6><a href="https://www.cnblogs.com/qiumohanyu/p/5431859.html">meta标签的作用</a></h6>
+      <p>定义网站关键字 ，网站描述，网站编码</p>
+      <ol>
+        <li>
+           1.搜索引擎优化（SEO）br>
+        　　2.定义页面使用语言br>
+        　　3.自动刷新并指向新的页面br>
+        　　4.实现网页转换时的动态效果br>
+        　　5.控制页面缓冲br>
+        　　6.网页定级评价br>
+        　　7.控制网页显示的窗口br>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <h6>HTML5的新特性</h6>
+      <p>新增了 header,footer nav,article,footer section,audio,video,canvas,等标签<br>
+        新增了localstorage,sessionStorage<br>
+        新增了websocket ,webworker,geolocation</p>
+      <code>
+          <pre>
+           移除了一些不常用的标签
+          </pre>
+        </code>
+    </li>
+   
+    <li>
+      <h6>解释下什么是BFC，block formatting context 及其应用</h6>
+      <p>
+        块格式化上下文， 是web页面 的可视化CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域
+      </p>
+      <ol>
+        <li>浮动元素 float left right</li>
+        <li>display inline-block flex</li>
+        <li>position absolute fixed</li>
+      </ol>
+      <code>
+          <pre>
+            var str = {};
+            console.log(proe)
+          </pre>
+        </code>
+    </li>
+    <li>
+      <h6>常见的兼容性问题</h6>
+      <ul>
+        <li>
+          png24位的图片在ie6上出现背景，<br>
+          解决方案：使用png8
+        </li>
+        <li>
+          浏览器的margin padding 不一致，<br>
+          解决方案：引入reset。css
+        </li>
+        <li>
+            超链接访问过后hover样式就不出现了 ，被点击访问过的超链接样式不在具有hover 和active <br>
+            link visited hover active
+        </li>
+        <li>
+            ie和ff都存在，相邻的两个div的margin-left和margin-right不会重合，但是margin-top和margin-bottom却会发生重合。 <br>
+            解决方法，同时采用margin-top或者同时采用margin-bottom。
+        </li>
+      </ul>
+    </li>
+    <li>
+      <h6>事件冒泡</h6>
+      <h6><a href="javascript:void(0);">禁止a跳转</a></h6>
+      <code>
+          <pre>
+            &lt;div id="box">
+              &lt;div id="box1"></div>
+            &lt;/div>
+            document.querySelector('#box').onclick = function(e){
+              alert('外面的');
+            }
+            document.querySelector('#box1').onclick = function(e){
+              alert('里面的');
+              e.stopPropagation();
+            }
+          </pre>
+        </code>
+    </li>
+    <li>
+      <h6>默认事件</h6>
+      <code>
+          <pre>
+              &lt;a href="http://www.baidu.com">百度</a>
+              document.querySelector('a').onclick = function(e){
+                e.preventDefault()
+              }
+              &lt;form action="">
+                &lt;button type="submit">提交</button>
+              &lt;/form>
+              document.querySelector('button').onclick = function(e){
+                e.preventDefault()
+              }
+          </pre>
+        </code>
+    </li>
+    <li>
+        <h6>阻止手机端图片长按保存</h6>
+        <code>
+            <pre>
+              &lt;img src="" onselect=function(){return false}/>
+            </pre>
+          </code>
+      </li>
+    <li>
+      <h6>如何禁止a标签跳转</h6>
+      <p></p>
+      <code>
+          <pre>
+            var str = {};
+            console.log(proe)
+          </pre>
+        </code>
+    </li>
+    <li>
+      <h6>video标签的常见属性</h6>
+      <ol>
+        <li>src, autoplay,controls,height, width</li>
+      </ol>
+    </li>
+    <li>
+      <h6>渐进增强和优雅降级</h6>
+      <p>渐进增强；针对低版本浏览器进行构建，保证最基本版本，针对高版本进行效果交互的优化</p>
+      <p>优雅降级；针对高版本进行构建，然后针对低版本进行兼容</p>
+    </li>
+    
+    <li>
+      <h6>CSS3新特性</h6>
+      <p></p>
+      <code>
+          <pre>
+            var str = {};
+            console.log(proe)
+          </pre>
+        </code>
+    </li>
+    <li>
+      <h6>display:none;和visibility:hidden的区别</h6>
+      <p></p>
+      <code>
+          <pre>
+            var str = {};
+            console.log(proe)
+          </pre>
+        </code>
+    </li>
+    <li>
+      <h6>CSS实现三角形图标的原理</h6>
+      <p></p>
+      <code>
+          <pre>
+            var str = {};
+            console.log(proe)
+          </pre>
+        </code>
+    </li>
+    <li>
+      <h6>CSS的position有哪些属性，</h6>
+      <p></p>
+      <code>
+          <pre>
+            var str = {};
+            console.log(proe)
+          </pre>
+        </code>
+    </li>
+  </ol>
+  <h3>布局问题 </h3>
+
+  <h3>JS + DOM </h3>
+  <ol>
+    <li>
+      <h6><a href="./事件委托.html">事件委托代理</a></h6>
+      <p>性能提升，所有元素共享一个事件。可以为未来元素增加事件</p>
+      <code>
+          <pre>
+            var str = {};
+            console.log(proe)
+          </pre>
+        </code>
+    </li>
+  </ol>
+
+  <h3>Canvas </h3>
+  <ol>
+
+  </ol>
+  <h3>JS</h3>
+  <ol>
+    <li>
+      <h6><a href="./防抖节流.html">防抖节流</a></h6>
+      <p>防抖场景：搜索框输入</p>
+      <p>节流场景：window.resize, window.onscroll</p>
+      <code></code>
+    </li>
+    <li>
+      <h6>cookie,session,sessionStorage ,localStorage的区别</h6>]]
+      <p>cookie 始终会带在http请求中，存储你小（4k）</p>
+      <p>sessionStorage 只会保存在本地，不会自动发送到服务器，储存大 （5M），关闭浏览器自动删除</p>
+      <p>localStorage 只会保存在本地，始终不会删除，储存大 （5M）</p>
+      <p>session 是在服务端的</p>
+    </li>
+    <li>
+        <h6>类型判断</h6>
+        <p>用typeof 判断基本数据类型 string number null undifined boolean</p>
+        <p>用 Object.prototype.toString 来判断其他类型</p>
+    </li>
+    <li>
+        <h6>手写AJAX</h6>
+        <code>
+          <pre>
+            functiona ajax() {
+              var xmlhttp = new XMLHttpRequest()
+              xmlhttp.onreadystatechange = functiona() {
+                if(xmlhttp.reasyState == 4 && xmlhttp.status = 200) {
+
+                }
+              }
+              xmlhttp.open('GET','http://www.xxx',true)
+              xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+              xml.send();
+            }
+          </pre>
+        </code>
+    </li>
+    <li>
+      <h6>Js事件机制？IE和谷歌，火狐有何区别？</h6>
+      <script>
+        var eventutil = {
+          addHandler : function(ele,type,handler) {
+            if(ele.addEventListener){//标准浏览器webkit，ff
+              element.addEventListener(type, handler, false);
+            }
+            else if(ele.attachEvent){//ie
+              ele.attachEvent('on' + type,handler);
+            }else{
+                element['on' + type] = handler;
+            }
+          },
+          removeHandler: function(ele,type,handler){
+              if(ele.removeEventListener){
+                ele.removeEventListener(type, handler, false);
+              }else if(ele.detachEvent){
+                ele.detachEvent('on' + type, handler);
+              }else{
+                ele['on' + type] = null;
+              }
+          }
+
+        }
+      </script>
+    </li>
+    <li>
+      <h6>什么是内存泄漏</h6>
+      <p>
+        内存被占用不得释放，导致内存越来越小
+      </p>
+    </li>
+    <li>
+      <h6>什么是闭包</h6>
+      <p>
+        函数内定义的函数被函数外部的变量所引用，此时会形成闭包，
+      </p>
+    </li>
+    <li>
+      <h6>作用域链</h6>
+      <p></p>
+    </li>
+    <li>
+      <h6>原型链</h6>
+      <p></p>
+    </li>
+  </ol>
+  <h3>Vue</h3>
+
+  <h3>Node</h3>
+
+  <h3>Express</h3>
+
+  <h3>性能优化</h3>
+    <ol>
+      <li>
+          1、尽量减少HTTP请求次数 <br>
+          2、减少DNS查找次数 <br>
+          3、避免跳转 <br>
+          4、可缓存的AJAX <br>
+          5、推迟加载内容 <br>
+          6、预加载 <br>
+          7、减少DOM元素数量 <br>
+          8、根据域名划分页面内容 <br>
+          9、使iframe的数量最小 <br>
+          10、不要出现404错误 <br>
+          11、使用内容分发网络 <br>
+          12、为文件头指定Expires或Cache-Control 13、Gzip压缩文件内容 <br>
+          14、配置ETag <br>
+          15、尽早刷新输出缓冲 <br>
+          16、使用GET来完成AJAX请求 <br>
+          17、把样式表置于顶部 <br>
+          18、避免使用CSS表达式（Expression） <br>
+          19、使用外部JavaScript和CSS <br>
+          20、削减JavaScript和CSS <br> <br>
+          21、用<link>代替@import
+          22、避免使用滤镜 <br>
+          23、把脚本置于页面底部 <br>
+          24、剔除重复脚本 <br>
+      </li>
+    </ol>
+
+  <h3>WEBPACK</h3>
+
+  <h3>版本管理</h3>
+
+  <h3>ES6</h3>
+
+</body>
+
+</html>

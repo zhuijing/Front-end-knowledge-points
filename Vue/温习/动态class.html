@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>动态class</title>
+  <script src="../vue/dist/vue.js"></script>
+  <style>
+  h1{
+    border: 1px solid hotpink;
+  }
+  .bgred{
+    background: red;
+  }
+  .bluecolor{
+    color: blue;
+  }
+  .yellowcolor{
+    color: yellow;
+  }
+  .font30{
+    font-size: 40px;
+  }
+  .fontw{
+    font-weight: bold;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>对象方式</h1>
+    <h3 class="ok" :class="{bgred:bgred,bluecolor:bluecolor,yellowcolor:yellowcolor,font30,fontw} ">我是好</h3>
+    <!-- <input type="text" :value="name" @input="changeinput"/> -->
+    <h3>{{name}}</h3>
+    <input type="text" v-model="name">
+    <h3 :class="myclass" class="ok">我是好a</h3>
+
+    <h1>数组方式</h1>
+    <h3 :class="[activeClass,errorClass]"></h3>
+    <h3 :class="[isactive ? activeClass:'',errorClass]"></h3>
+    <h3 :class="[{active:isactive},errorClass]"></h3>
+  </div>
+
+  
+  <script>
+  const vm = new Vue({
+    el:'#app',
+    data(){
+      return {
+        bgred:true,
+        bluecolor:false,
+        yellowcolor:true,
+        font30:'30',
+        fontw:"bold",
+        name:'曹泽鹏',
+        myclass:{
+          bgred:true,
+          bluecolor:false,
+          yellowcolor:true,
+          font30:'30',
+          fontw:"bold",
+        },
+        isactive:true,
+        activeClass: 'active',
+        errorClass: 'text-danger'
+
+      }
+    },
+    methods: {
+      changeinput(e){
+        this.name = e.target.value
+      }
+    },
+  })
+  </script>
+</body>
+</html>
+
+190 -230

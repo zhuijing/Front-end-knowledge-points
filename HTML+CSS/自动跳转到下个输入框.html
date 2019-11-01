@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    input{
+      border: 10px solid red;
+    }
+  </style>
+</head>
+<body>
+  <input type="text">
+  <input type="text">
+  <input type="text">
+  <input type="text">
+  <input type="text">
+</body>
+<script>
+  var inputs = document.querySelectorAll('input');
+  for(var i=0,len=inputs.length;i < len;i++){
+    i && (inputs[i].disabled = true);
+    (function(i){
+        inputs[i].onkeyup = function() {
+        this.disabled = false;
+        (i+1<len) && (inputs[i+1].disabled = false);
+        (i+1<len) && (inputs[i+1].focus());
+      }
+    })(i)
+  }
+
+</script>
+</html>

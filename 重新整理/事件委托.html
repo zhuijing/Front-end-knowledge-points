@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style lang="">
+    
+  </style>
+</head>
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+  </ul>
+  <!-- 事件委托 -->
+  <script>
+
+    // for(let i= 1;i<4; i++) {
+    //   setTimeout(() => {
+    //     alert(i)
+    //   }, i * 1000);
+    // }
+  //  var aLis = [...document.getElementsByTagName('li')];
+  //  for(var i =0,len = aLis.length;i < len; i++) {
+  //   aLis[i].onclick = function() {
+  //     alert(i)
+  //   }
+  //  }
+  //  for(var i =0,len = aLis.length;i < len; i++) {
+  //   aLis[i].index = i;
+  //   aLis[i].onclick = function() {
+  //     alert(i)
+  //   }
+  //  }
+
+  // for(var i =0,len = aLis.length;i < len; i++) {
+  //   aLis[i].index = i;
+  //   aLis[i].onclick = function() {
+  //     alert(this.index)
+  //   }
+  //  }
+
+  //  for(var i =0,len = aLis.length;i < len; i++) {
+  //     (function(i){
+  //       aLis[i].onclick = function() {
+  //         alert(i)
+  //       }
+  //     }(i))
+  //  }
+
+  // aLis.forEach((v,index ) => {
+  //   v.onclick = function() {
+  //     alert(index)
+  //   }
+  // })
+  // var i =10;
+  // while(i--){
+  //   var li = document.createElement('li');
+  //   var oUl = document.getElementsByTagName('ul')[0];
+  //   li.innerText = i+10;
+  //   oUl.appendChild(li);
+  // }
+  //   var oUl = document.getElementsByTagName('ul')[0];
+    // oUl.onclick = function(e) {
+    //   console.log(e)
+    //   if(e.target && e.target.nodeName === 'LI') {
+    //     let item = e.target;
+    //     alert(item.innerText)
+    //   }
+    // }
+
+    // oUl.addEventListener('click',function(e) {
+    //   if(e.target && e.target.nodeName === 'LI') {
+    //     alert(e.target.innerText)
+    //   }
+    // })
+
+    // var i = 3;
+    // while(i--) {
+    //   (function(i){
+    //     setTimeout(() => {
+    //       alert(i)
+    //     }, i* 1000);
+    //   }(i))
+    // }
+
+    // var i =3;
+    // while(i--) {
+    //   let j = i;
+    //   setTimeout(() => {
+    //     alert(j)
+    //   }, j * 1000);
+    // }
+
+      
+  </script>
+  <style>
+    body{
+      height: 1000px;
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../../vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">  </div>
+  <script>
+    
+     var kehu = {
+      template:`<div>我是客户我买了：{{food}} {{$attrs.msg}}<input :value="zhifujine" @input="wozhifule"/></div>`,
+      props:['food'],
+      methods:{
+        wozhifule(e){
+          this.zhifujine = e.target.value;
+          this.$emit('paymoney',e.target.value)
+          this.$emit('kehupay',e.target.value)
+        }
+      },
+      data(){
+        return {
+          zhifujine:'100元'
+        }
+      }
+    }
+    var shouyin = {
+      template:`<div>我是收银我收到<kehu :food="foods" v-bind="$attrs" v-on="$listeners" @paymoney="payle"/>{{jine}}</div>`,
+      data(){
+        return {
+          foods:'牛奶,面包',
+          jine:'0元'
+        }
+      },
+      methods: {
+        payle(e){
+          console.log(e,'----')
+          this.jine = e;
+        }
+      },
+      components:{
+      kehu
+
+      }
+    }
+    var laoban = {
+      template:`
+      <h1><shouyin :msg="msg" @kehupay="payle"/></h1>
+      `,
+      components:{shouyin},
+      methods:{
+        payle(e) {
+          console.log(e)
+          alert(e)
+        }
+      },
+      data(){
+        return {
+          msg:'免单了'
+        }
+      }
+    }
+  var vm = new Vue({
+    el:'#app',
+    template:'',
+    components:{
+      laoban,
+    },
+    template:'<laoban/>'
+  })
+  </script>
+</body>
+</html>

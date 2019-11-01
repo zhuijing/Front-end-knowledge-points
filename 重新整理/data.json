@@ -1,0 +1,184 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/auth/auth",
+    "pages/mallIndex/mallIndex",
+    "pages/personalShop/personalShop"
+  ],
+  "subpackages":[
+    { "root":"pages/mallList/",
+      "name":"mallList",
+      "pages": [
+        "mallList"
+      ]
+    },{
+      "root": "pages/xqsearch/",
+      "name": "xqsearch",
+      "pages": [
+        "index"
+      ]
+    },{
+      "root": "pages/selectCity/",
+      "name": "selectCity",
+      "pages": [
+        "index"
+      ]
+    },{
+      "root": "pages/company/",
+      "name": "company",
+      "pages": [
+        "index",
+        "companySearch/companySearch"
+      ]
+    },{
+      "root": "pages/newHouse/",
+      "name": "newHouse",
+      "pages": [
+        "list/list",
+        "detail/detail",
+        "fullScreen/fullScreen"
+      ]
+    },{
+      "root": "pages/oldHouse/",
+      "name": "oldHouse",
+      "pages": [
+        "list/list",
+        "detail/detail"
+      ]
+    },{
+      "root": "pages/majorCommunityAll/",
+      "name": "majorCommunityAll",
+      "pages": [
+        "majorCommunityAll"
+      ]
+    },{
+      "root": "pages/allBrokers/",
+      "name": "allBrokers",
+      "pages": [
+        "allBrokers"
+      ]
+    },{
+      "root": "pages/map/",
+      "name": "map",
+      "pages": [
+        "map"
+      ]
+    },{
+      "root": "pages/legalNotice/",
+      "name": "legalNotice",
+      "pages": [
+        "legalNotice"
+      ]
+    },{
+      "root": "pages/userDeclare/",
+      "name": "userDeclare",
+      "pages": [
+        "userDeclare"
+      ]
+    },{
+      "root": "pages/canvasImg/",
+      "name": "canvasImg",
+      "pages": [
+        "canvasImg"
+      ]
+    },{
+      "root": "pages/webView/",
+      "name": "webView",
+      "pages": [
+        "personalPage/personalPage",
+        "lawstatement/lawstatement"
+      ]
+    },{
+      "root": "pages/messageList/",
+      "name": "messageList",
+      "pages": [
+        "index"
+      ]
+    },{
+      "root": "pages/chat/",
+      "name": "chat",
+      "pages": [
+        "index"
+      ]
+    },{
+      "root": "pages/syll/",
+      "name": "syll",
+      "pages": [
+        "valuationResule/index",
+        "valuationForm/index",
+        "chart/city/index",
+        "chart/cityProper/index",
+        "chart/businessCircle/index",
+        "chart/village/index",
+        "personalPage/index",
+        "willAnswer/index",
+        "questionDetail/index",
+        "newsDetail/index",
+        "commentAll/index",
+        "rentHouseDetails/index",
+        "districtDetails/index",
+        "SecondHandHousingDetail/index",
+        "newsAll/index",
+        "questionAll/index"
+      ]
+    }
+  ],
+  "preloadRule":{
+    "pages/home/home":{
+      "network":"all",
+      "packages":["mallList","xqsearch","selectCity","messageList","chat"]
+    },
+    "pages/mallIndex/mallIndex":{
+      "network":"all",
+      "packages":[
+        "company",
+        "newHouse",
+        "oldHouse",
+        "majorCommunityAll",
+        "allBrokers",
+        "map",
+        "legalNotice",
+        "userDeclare",
+        "canvasImg",
+        "webView"
+      ]
+    },
+    "pages/auth/auth":{
+      "network":"all",
+      "packages":["syll"]
+    }
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "诸葛找房云门店",
+    "navigationStyle": "default",
+    "enablePullDownRefresh": false
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于推荐当地房源"
+    }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wxb748bbed6783eafc"
+  ],
+  "usingComponents": {
+    "header": "/components/header/header",
+    "poster": "/components/canvasImg/poster/index",
+    "share": "/components/share/share",
+    "auth-view": "/components/authview/authview",
+    "wrap-view": "/components/wrapview/wrapview",
+    "auth-info": "/components/authInfo/index",
+    "chart":"/components/ec-canvas/ec-canvas",
+    "footer": "/components/syllFooter/index"
+    
+  },
+  "sitemapLocation": "sitemap.json",
+  "networkTimeout":{
+    "request": 100000,
+    "uploadFile":100000,
+    "downloadFile": 100000
+  },
+  "debug": true
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../../vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">  </div>
+  <script>
+    var bus = new Vue();
+    var wang = {
+      template:`<h1><button @click="jieqian">曹泽鹏借我5000元</button><h1/>`,
+      methods: {
+        jieqian(){
+          bus.$emit('jieqian','曹泽鹏借我5000元')
+        }
+      },
+      mounted() {
+        bus.$on('shouqian',function(e) {
+          alert(e)
+        })
+      },
+    }
+    var cao = {
+      template:`<h1><button @click="jieni">借你10000元</button><h1/>`,
+      mounted() {
+        bus.$on('jieqian',function(e){
+          alert(e)
+        })
+      },
+      methods: {
+        jieni(){
+          bus.$emit('shouqian','借你10000元')
+        }
+      },
+    }
+    var vm = new Vue({
+      el:'#app',
+      template:'',
+      components:{
+        wang,
+        cao
+      },
+      template:'<div><wang/><cao/><div/>'
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>拖拽api</title>
+  <style>
+    .red {
+      background: red;
+    }
+
+    .blue {
+      background: blue;
+    }
+
+    .mrect {
+      width: 200px;
+      height: 200px;
+    }
+
+    .lrect {
+      width: 500px;
+      height: 500px;
+    }
+
+    div[id=show] {
+      border: 10px dashed #ccc;
+      width: 300px;
+      height: 300px;
+      margin: 0 5px;
+      resize: both;
+      overflow: auto;
+    }
+    div[id=show]:hover{
+      border: 10px dashed #333;
+    }
+    div#mian{
+      width: 100%;
+    }
+    div#successLabel{
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <form action="#" id="form1">
+    <h1>文件预览并上传</h1>
+    <div id="main">
+      <div id="show">文件预览区域</div>
+    </div>
+    <input type="submit" value="上传" id="saveButton" disabled>
+    <div id="successLabel"></div>
+  </form>
+  <div class="red mrect" draggable="true"></div>
+  <script>
+    function dragstart(ev) {
+      console.log(ev);
+    }
+    var sendInformation = {};
+    function init() {
+      var dest = document.getElementById('show');
+      dest.addEventListener('dragover',function(ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+
+      },false);
+      dest.addEventListener('dragend',function(ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+      },false);
+
+      dest.addEventListener('drop',function(ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+        var file = ev.dataTransfer.files[0];
+        var reader = new FileReader();
+        sendInformation.fileName = file.name;
+        var saveButton = document.getElementById('saveButton');
+console.log(file,'file')
+        if(file.type.substr(0,5) === 'image') {
+          reader.onload = function(event) {
+            console.log(event,'event')
+            dest.style.background = `url(${event.target.result}) no-repeat center`;
+            dest.innerHTML = '';
+          }
+          reader.readAsDataURL(file);
+          sendInformation.content = file.getAsBinary();
+          sendInformation.fileType= 1;
+          saveButton.disabled = "";
+        } 
+         document.getElementById('successLabel').innerHTML = '';
+      },false)
+
+      document.ondragover = function(e) { e.preventDefault()};
+      document.ondrog = function(e) { e.preventDefault()};
+    }
+    init()
+  </script>
+</body>
+
+</html>

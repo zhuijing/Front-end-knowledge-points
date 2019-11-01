@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.1.1/vuex.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{name}} -{{age}} {{wifi}}</h1>
+    <br>
+    <br>
+    <h1>{{desname}} {{desage}} <button @click="increment(100)">加100</button></h1>
+    <br>
+    <br>
+    <button @click="alert"></button>
+    <button @click="tijiao"> 对象的方式提交 mutations</button>
+  </div>
+
+  <script>
+    const store = new Vuex.Store({
+      state: {
+        name: '曹泽鹏',
+        age: 100,
+        sex: '男'
+      },
+      getters:{
+        desname: (state,getters) => {
+          return '我叫'  + state.name
+        },
+        desage:(state) => {
+          return '我今年'  + state.age
+        }
+      },
+      mutations: {
+        
+        increment(state,payload) {
+          // num 传参
+          state.age+=payload.amount
+        }
+      },
+      actions: {
+        add({ commit }) {
+          commit('increment')
+        }
+      }
+    })
+    const { mapState,mapGetters ,mapMutations} = Vuex;
+    const vm = new Vue({
+      el: '#app',
+      store,
+      data() {
+        return {
+        }
+      },
+      methods: {
+        tijiao()  {
+          // 可以根据条件动态提交mutations
+          store.commit({
+            type: 'increment',
+            amount: 10
+          })
+        },
+        alert:() => {
+          alert('ok')
+        },
+        // 方式一
+        // ...mapMutations({
+        //   addage:'increment'
+        // })
+        // 方式二
+        ...mapMutations(['increment'])
+
+      },
+      computed: {
+        wifi() {
+          return 'nice wifi'
+        },
+        ...mapGetters(['desname','desage']),
+        ...mapState(['name', 'age'])
+      },
+    })
+  </script>
+</body>
+
+</html>

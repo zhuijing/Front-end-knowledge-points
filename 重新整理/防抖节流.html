@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style lang="">
+    
+  </style>
+</head>
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+  </ul>
+  <!-- 事件委托 -->
+  <script>
+
+  
+      // function debounce(fn,delay) {
+      //   var timer = null;
+      //   return function () {
+      //     var self = this;
+      //     if(timer) {
+      //       clearTimeout(timer)
+      //     }
+      //     timer = setTimeout((...arg) => {
+      //       fn.apply(self,arg)
+      //     }, delay);
+      //   }
+      // }
+
+      function debounce(fn,delay) {
+        var timmer = null;
+        return function() {
+          const self = this;
+          if(timmer) {
+            clearTimeout(timmer)
+          }
+          timmer = setTimeout(() => {
+            fn.apply(self,arguments)
+          }, delay);
+        }
+      }
+      var oli = document.querySelector('li');
+      function throttle(fn,delay) {
+        var last = 0;
+        return function(...args){
+          var self = this;
+          var now = Date.now();
+          if(now - last > delay) {
+            last = now;
+            fn.apply(self,args)
+          }
+        }
+      }
+      function throttle(fn,delay) {
+        var last = 0;
+        var timer = null;
+        return function(...args) {
+          var self = this;
+          var now = Date.now();
+
+          if(now - last < delay) {
+            if(timer) {
+              clearTimeout(timer)
+            }
+            timer = setTimeout(() => {
+              last = now;
+              fn.apply(self, args)
+            }, delay);
+          } else {
+            last = now;
+            fn.apply(self, args)
+          }
+        }
+      }
+      window.onscroll = throttle(function(e) {
+        console.log('1秒')
+      },3000)
+  </script>
+  <style>
+    body{
+      height: 1000px;
+    }
+  </style>
+</body>
+</html>

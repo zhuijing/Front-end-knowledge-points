@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <h1>Hello App!</h1>
+        <p>
+          <!-- 使用 router-link 组件来导航. -->
+          <!-- 通过传入 `to` 属性指定链接. -->
+          <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+          <router-link :to="{name:'fooname',params:{id:1}}">Go to Foo</router-link>
+          <router-link :to="{name:'fooname',params:{id:2000}}">Go to Foo</router-link>
+
+          <router-link :to="{name:'barname',query:{id:2}}">Go to Bar</router-link>
+         
+        </p>
+        <!-- 路由出口 -->
+        <!-- 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+      </div>
+      <script>
+      const Foo = { 
+        template: '<div>foo</div>',
+        beforeRouteEnter (to, from, next) {
+          console.log(to,'beforeRouteEnter to')
+          next()
+        }, 
+        
+        beforeRouteUpdate (to, from, next) {
+          console.log(to,'beforeRouteUpdate to')
+          next()
+        }, 
+        beforeRouteLeave (to, from, next) {
+          console.log(to,'beforeRouteEnter to')
+          next()
+        }, 
+       
+        watch: {
+          $route(e){
+            console.log(e,'tour')
+          },
+          $router(e){
+            console.log(e,'tour')
+          }
+        }, 
+      }
+      const Bar = { template: '<div>bar</div>' }
+      const routes = [
+        { path: '/foo/:id', component: Foo,name:"fooname" },
+        { path: '/bar', component: Bar,name:"barname" }
+      ]
+      const router = new VueRouter({
+        routes // (缩写) 相当于 routes: routes
+      })
+      const app = new Vue({
+        router
+      }).$mount('#app')
+
+
+      </script>
+</body>
+</html>

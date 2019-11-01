@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+</head>
+<body>
+    <h2> 重定向</h2>
+    <div id="app">
+        <p>
+         <button @click="strpath('home')">重定向到mine</button>
+        </p>
+        
+        <!-- 路由出口 -->
+        <!-- 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+      </div>
+      <script>
+        const Home = {
+          template:"<div>home组件</div>"
+        }
+        const Mine = {
+          template:"<div>mine组件</div>"
+        }
+        const router = new VueRouter({
+          routes:[
+            {
+              name:"home",
+              path:"/home/fenlei/:age/:sex",
+              component: Home,
+              // redirect:{name:'mine'}  方式一 重定向的目标也可以是一个命名的路由：
+              // redirect:'/mine/setting' 方式二 重定向到一个 全匹配的路径
+              redirect: to => {
+                // 方法接收 目标路由 作为参数
+                // return 重定向的 字符串路径/路径对象
+                // 这里做处理 
+
+                // return {name:'mine'} 
+                // 或者 
+                // return '/mine/setting'
+              }
+            },
+            {
+              name:"mine",
+              path:"/mine/setting",
+              component: Mine,
+              alias:"/wode"  // 别名，当用户访问 index.html#/wode 的时候 路径不变 ，但是实际访问的是 index.html#/mine/setting
+            },
+          ]
+        })
+        const app = new Vue({
+          router,
+          methods: {
+            strpath(str){
+              this.$router.push({name:str,params:{age:100,sex:'男'}})
+            }
+          },
+        }).$mount('#app')
+
+      </script>
+</body>
+</html>

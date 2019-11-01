@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.1.1/vuex.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    {{name}} -{{age}} {{wifi}}
+    {{aliasdesname}} 
+  </div>
+
+  <script>
+    const store = new Vuex.Store({
+      state: {
+        name: '曹泽鹏',
+        age: 100,
+        sex: '男'
+      },
+      getters:{
+        desname: (state,getters) => {
+          return '我叫'  + state.name
+        },
+        desage:(state) => {
+          return '我今年'  + state.age
+        }
+      },
+      mutations: {
+        increment(state) {
+          state.age++
+        }
+      },
+      actions: {
+        add({ commit }) {
+          commit('increment')
+        }
+      }
+    })
+    const { mapState,mapGetters } = Vuex;
+    const vm = new Vue({
+      el: '#app',
+      store,
+      data() {
+        return {
+        }
+      },
+      mounted() {
+        store.commit('increment')
+        store.dispatch('add')
+      },
+      computed: {
+        wifi() {
+          return 'nice wifi'
+        },
+        // 方式一
+        // ...mapGetters(['desname','desage']),
+        // 方式二
+        ...mapGetters({
+          aliasdesname:'desname',
+          aliasdesage:'desage',
+        }),
+        ...mapState(['name', 'age'])
+      },
+    })
+  </script>
+</body>
+
+</html>

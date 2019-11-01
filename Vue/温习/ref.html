@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ref</title>
+  <script src="../vue/dist/vue.js"></script>
+
+</head>
+<body>
+  <div id="app">
+    <button ref="btn1">拨打</button>
+    <sun ref="sun"/>
+  </div>
+  <script>
+    var sun= {
+      template:'<h1>我的组件</h1>'
+    }
+      var vm = new Vue({
+        el:'#app',
+        components:{
+          sun
+        },
+        beforeMount() {
+          console.log(this.$refs.btn1,'beforeMount')
+          console.log(this.$refs.sun,'beforeMount')
+        },
+        mounted() {
+          console.log(this.$refs.btn1,'mounted')
+          console.log(this.$refs.sun,'mounted')
+        },
+      })
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+</head>
+<body>
+  <h2> 对象path跳转</h2>
+    <div id="app">
+        <p>
+         <button @click="strpath('/home/fenlei/数学/一年级')">/home/fenlei/数学/一年级</button>
+         <button @click="strpath('/mine')">/home</button>
+         <p>this.$router.push({path:'/home/fenlei/数学/一年级'})  跳转后路由到 index.html#/home/fenlei/数学/一年级</p>
+         <p> this.$router.push({path:'/mine'}) 跳转后的路由是 index.html#/home</p>
+        </p>
+        <p>
+            <button @click="strpath('home/fenlei/数学/一年级')">home/fenlei/数学/一年级</button>
+            <button @click="strpath('mine')">home</button>
+            <p>this.$router.push({path:'home/fenlei/数学/一年级'})  跳转后路由到 index.html#/home/fenlei/数学/一年级</p>
+            <p> 当再次调用this.$router.push({path:'mine'}) 跳转后的路由是 index.html#/home/fenlei/数学/mine</p>
+
+           </p>
+
+           <h1>注意：要跳到多级路径 要/home/fenlei/数学/一年级 最开始要带/</h1>
+        <!-- 路由出口 -->
+        <!-- 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+      </div>
+      <script>
+        const router = new VueRouter({
+        })
+        const app = new Vue({
+          router,
+          methods: {
+            strpath(str){
+              this.$router.push({path:str,query:{id:1000}})
+            }
+          },
+        }).$mount('#app')
+
+      </script>
+</body>
+</html>

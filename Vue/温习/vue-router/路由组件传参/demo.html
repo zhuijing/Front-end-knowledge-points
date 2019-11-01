@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+</head>
+<body>
+    <h2> 重定向</h2>
+    <div id="app">
+        <p>
+         <button @click="strpath('home')">动态props</button>
+         <button @click="strpath('mine')">动态props</button>
+        </p>
+        
+        <!-- 路由出口 -->
+        <!-- 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+      </div>
+      <script>
+        const Home = {
+          template:"<div>我今年{{age}}，我是 {{sex}}</div>",
+          props:['age','sex']
+        }
+        const Mine = {
+          template:`
+              <div>
+                {{msg}}
+              </div>`,
+          props:['msg']
+        }
+        
+        const router = new VueRouter({
+          routes:[
+            {
+              name:"home",
+              path:"/home/fenlei/:age/:sex",
+              component: Home,
+              props:true // 当传入true 值的时候  ,此时会把 this.$route.params 设置为Home组件的属性
+            },{
+              name:"mine",
+              path:"/mine",
+              component: Mine,
+              // props:{
+              //   msg:"我是个人中心" // Mine 组件里可以直接使用 msg这个值
+              // }
+
+              props: (route) => ({ msg: `我今年${route.query.age}岁了` })
+
+            }]
+        })
+        const app = new Vue({
+          router,
+          methods: {
+            strpath(str){
+              this.$router.push({name:str,query:{age:100,sex:'男'}})
+            }
+          },
+        }).$mount('#app')
+
+      </script>
+</body>
+</html>

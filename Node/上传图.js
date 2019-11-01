@@ -2,6 +2,9 @@ const path = require('path');
 const request = require('request');
 const fs = require('fs');
 
+console.log(__dirname);
+console.log(__filename);
+
 const readdir = function(dirpath) {
 
   fs.readdir(dirpath,function(err,files) {

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../../vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">  </div>
+  <script>
+    var sun = {
+      template:'<span>{{name}}</span>',
+      inject:['name']
+  }
+    var parent ={
+      template:'<h1>儿子呀，<sun/>爸爸错了。</h1>',
+      provide:{
+        name:'曹煜翔'
+      },
+      components:{
+        sun
+      }
+    }
+    
+  var vm = new Vue({
+    el:'#app',
+    template:'',
+    components:{
+      parent,
+    },
+    template:'<div><parent/></div>'
+  })
+  </script>
+</body>
+</html>

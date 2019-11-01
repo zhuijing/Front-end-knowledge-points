@@ -1,1 +1,3 @@
-export { m, n1 } from './index1.js';
+import {mergeConfig } from './index2.js';
+console.log(mergeConfig,'--')
+export { mergeConfig as m}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>动态class</title>
+  <script src="../vue/dist/vue.js"></script>
+  <style>
+  h1{
+    border: 1px solid hotpink;
+  }
+  .bgred{
+    background: red;
+  }
+  .bluecolor{
+    color: blue;
+  }
+  .yellowcolor{
+    color: yellow;
+  }
+  .font30{
+    font-size: 40px;
+  }
+  .fontw{
+    font-weight: bold;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+   <my-app/>
+  </div>
+
+  
+  <script>
+    
+    const myFooter ={
+      name:'myFooter',
+      template:`<div><h1>{{msg}}</h1></div>`,
+        data(){
+          return {
+            msg:'我是脚'
+          }
+        }
+    }
+    const myApp = {
+      name:'myApp',
+      components:{myFooter},
+
+      template:`<div><h1>{{msg}}</h1><my-body/><myBody/><my-footer/></div>`,
+        data(){
+          return {
+            msg:'我是组件'
+          }
+        }
+    }
+  Vue.component('myBody',{
+    name:'myBody',
+
+      template:`<div><h1>{{msg}}</h1></div>`,
+        data(){
+          return {
+            msg:'我是身体'
+          }
+        }
+  })
+  const vm = new Vue({
+    el:'#app',
+    components:{myApp},
+    data(){
+      return {
+        bgred:true,
+        bluecolor:false,
+        yellowcolor:true,
+        font30:'30',
+        fontw:"bold",
+        name:'曹泽鹏'
+      }
+    },
+    methods: {
+      changeinput(e){
+        this.name = e.target.value
+      }
+    },
+  })
+  </script>
+</body>
+</html>

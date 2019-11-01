@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.1.1/vuex.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{name}} -{{age}} {{wifi}}</h1>
+    <br>
+    <br>
+    <h1>{{desname}} {{desage}} <button @click="increment(100)">加100</button></h1>
+    <br>
+    <br>
+    <button @click="alert">弹出 </button>
+    <br>
+    <br>
+    <button @click="tijiao"> 对象的方式提交 actions</button>
+    <br>
+    <br>
+    <button @click="add1w(10000)">加10000</button>
+  </div>
+
+  <script>
+    const store = new Vuex.Store({
+      state: {
+        name: '曹泽鹏',
+        age: 100,
+        sex: '男'
+      },
+      getters:{
+        desname: (state,getters) => {
+          return '我叫'  + state.name
+        },
+        desage:(state) => {
+          return '我今年'  + state.age
+        }
+      },
+      mutations: {
+        increment(state,num) {
+          // num 传参
+          state.age+=num;
+        }
+      },
+      actions: {
+        add({ commit },num) {
+          commit('increment',num.amount)
+        },
+        add1w({ commit },num) {
+          commit('increment',num)
+        },
+      }
+    })
+    const { mapState,mapGetters ,mapMutations,mapActions} = Vuex;
+    const vm = new Vue({
+      el: '#app',
+      store,
+      data() {
+        return {
+        }
+      },
+      methods: {
+        ...mapMutations(['increment']),
+        ...mapActions(['add1w']),
+        tijiao()  {
+          // 方式一
+          // store.dispatch('add',{
+          //   amount: 10
+          // })
+          // 方式二
+          store.dispatch({
+            type:'add',
+            amount: 10
+          })
+        },
+        alert:() => {
+          alert('ok')
+        },
+      },
+      computed: {
+        wifi() {
+          return 'nice wifi'
+        },
+        ...mapGetters(['desname','desage']),
+        ...mapState(['name', 'age']),
+
+      },
+    })
+  </script>
+</body>
+
+</html>
