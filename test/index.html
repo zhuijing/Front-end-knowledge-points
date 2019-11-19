@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+  <input type="text" id="name">
+  <input type="text" id="password" >
+  <button id="login">登录</button>
+  <img src="images/1.png" alt="" srcset="">
+  <img src="./images/1.png" alt="" srcset="">
+  <script>
+  $(function() {
+    $('#login').click(function() {
+      var name = $('#name').val();
+      var password = $('#password').val()
+      console.log(name,password)
+      // $.ajax({
+      //   type:'POST',
+      //   // http://127.0.0.1:8888/
+      //   url:`http://127.0.0.1:8888/login?name=${name}&password=${password}`,
+      //   success(res) {
+      //     console.log(res,'请求结果')
+      //   }
+      // })
+
+      $.get(`http://127.0.0.1:8888/login?name=${name}&password=${password}`,function(res) {
+          console.log(res,'请求结果')
+      })
+
+    })
+  })
+  
+  </script>
+</body>
+</html>

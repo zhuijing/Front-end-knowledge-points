@@ -1,9 +1,23 @@
 const path = require('path');
 const request = require('request');
 const fs = require('fs');
-
+const dirname = process.argv.slice(2)[0];
 console.log(__dirname);
 console.log(__filename);
+console.log(process.argv,'argv')
+var name ='cao';
+var str = Math.random().toString(16).slice(-5);
+var date = new Date();
+var year = date.getFullYear();
+var month = date.getMonth();
+var day = date.getDate();
+var getname = (function() {
+  var num = 0;
+  return function (ext){
+   num++;
+   return  name + str + year + month + day + num + ext;
+  }
+}())
 
 const readdir = function(dirpath) {
 
@@ -22,11 +36,11 @@ const readdir = function(dirpath) {
         } else if(stats.isFile(resolvePath)){
 
           const fileinfo = path.parse(resolvePath);
-
-          if((/(png|jpg|jpeg)/g).test(fileinfo.ext)) {
-
+          const _ext = fileinfo.ext;
+          if((/(png|jpg|jpeg)/g).test(_ext)) {
+            
             var formData = {
-              luyou:`wolong/alymd/images/${fileinfo.base}`,
+              luyou:`wolong/alymd/images/${getname(_ext)}`,
               file:fs.createReadStream(resolvePath),
             };
             
@@ -39,4 +53,7 @@ const readdir = function(dirpath) {
     })
   })
 }
-readdir('./新切图')
+if(!dirname) {
+  throw Error('请输入文件夹路径')
+}
+readdir(dirname)
