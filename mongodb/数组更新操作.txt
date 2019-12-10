@@ -1,0 +1,13 @@
+新建数据
+db.students.insert([
+   { "_id" : 1, "grades" : [ {fid:11111,expires:1555555,usecount:0}, {fid:22222,expires:1555555,usecount:0}, {fid:33333,expires:1555555,usecount:0}, ] },
+   { "_id" : 2, "grades" : [ {fid:44444,expires:1555555,usecount:0}, {fid:55555,expires:1555555,usecount:0}, {fid:66666,expires:1555555,usecount:0}, ] },
+   { "_id" : 3, "grades" : [ {fid:77777,expires:1555555,usecount:0}, {fid:88888,expires:1555555,usecount:0}, {fid:99999,expires:1555555,usecount:0}, ] },
+])
+
+更新_id  = 1 的 grades的第三项的 usecount 为 4
+db.students.updateOne({_id:1},{$set:{
+  'grades.2.usecount':4
+}})
+
+

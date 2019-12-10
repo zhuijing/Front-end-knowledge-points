@@ -1,0 +1,92 @@
+server {
+    listen       80;
+    server_name  zhuge.com *.zhuge.com; 
+    access_log  /usr/local/openresty/nginx/logs/newhouse-fe-access.log  main;
+
+    if ($host = 'zhuge.com'){
+        rewrite ^(.*)$ http://www.zhuge.com permanent;
+    }
+
+    if ($request_uri ~ 'xinfang'){
+        rewrite ^(.*)$ / permanent;
+    }  
+    if ($http_host = hn.zhuge.com) { rewrite ^(.*)$ http://bj.zhuge.com/ permanent; }
+#    if ($http_user_agent ~* (Android|webos|iPhone|ipad|ipod|blackberry|iemobile)) { set $ua_nocache 1; }
+
+    location / {
+        root  html;
+        index index.html index.htm;
+
+#        if ($request_method = PURGE) {
+#                set $lua_purge_path "/data/nginx/cache/";
+#                set $lua_purge_levels "1:2";
+#                content_by_lua_file /usr/local/openresty/nginx/conf/lua/purge.lua;
+#        }
+#        
+#        proxy_cache_bypass $ua_nocache;
+#        proxy_no_cache $ua_nocache;
+#        proxy_cache zhugecache;
+#        proxy_cache_valid 15m;
+#        proxy_cache_key $host$uri$is_args$args;
+#        add_header X-Proxy-Cache $upstream_cache_status;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://xinfang-cityhomepage;
+    }
+
+    location /sitemap {
+        root  html;
+        index index.html index.htm;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://sitemap;
+    }
+
+    location /robots.txt {
+        root  html;
+        index index.html index.htm;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://sitemap;
+    }
+
+    location ^~ /zhiyeguwen {
+        root  html;
+        index index.html index.htm;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Referer $http_referer;
+        proxy_pass http://ershoufang;
+    }
+
+
+    location /download.html {
+        root  html;
+        index index.html index.htm;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://ershoufang;
+    }
+
+    error_page 403 /p403.html;
+        location = /p403.html {
+        root   html;
+        allow all;
+    }
+
+    error_page 404 /p404.html;
+        location = /p404.html {
+        root   html;
+    }
+
+    error_page 500 502 503 504 /p50x.html;
+        location = /p50x.html {
+        root   html;
+    }
+
+}
